@@ -431,6 +431,21 @@ typedef struct CassRetryPolicy_ CassRetryPolicy;
 typedef struct CassCustomPayload_ CassCustomPayload;
 
 /**
+ * Contains the set of Cass Objects used to control a session and execute queries
+ */
+typedef struct SessionObjects {
+  CassFuture* cass_future;
+  CassSession* cass_session;
+  CassCluster* cass_cluster;
+  operator=(SessionObjects obj) {
+    cass_cluster = obj.cass_cluster;
+    cass_session = obj.cass_session;
+    cass_future = obj.cass_future;
+  }
+};
+
+
+/**
  * A snapshot of the session's performance/diagnostic metrics.
  *
  * @struct CassMetrics

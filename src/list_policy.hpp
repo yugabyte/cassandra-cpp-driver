@@ -45,7 +45,7 @@ public:
 
   virtual ListPolicy* new_instance() = 0;
 
-private:
+protected:
   virtual bool is_valid_host(const Host::Ptr& host) const = 0;
 
 };

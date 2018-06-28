@@ -459,6 +459,12 @@ inline bool operator==(const ViewMetadata::Ptr& a, const ViewMetadata::Ptr& b) {
   return a->name() == b->name();
 }
 
+class PartitionMetadata {
+ public:
+  int dummy;
+};
+
+
 class TableMetadata : public TableMetadataBase {
 public:
   typedef SharedRefPtr<TableMetadata> Ptr;
