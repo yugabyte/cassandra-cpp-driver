@@ -569,7 +569,9 @@ typedef enum CassIndexType_ {
   XX(CASS_VALUE_TYPE_MAP,  0x0021, "map", "org.apache.cassandra.db.marshal.MapType") \
   XX(CASS_VALUE_TYPE_SET,  0x0022, "set", "org.apache.cassandra.db.marshal.SetType") \
   XX(CASS_VALUE_TYPE_UDT,  0x0030, "", "") \
-  XX(CASS_VALUE_TYPE_TUPLE,  0x0031, "tuple", "org.apache.cassandra.db.marshal.TupleType")
+  XX(CASS_VALUE_TYPE_TUPLE,  0x0031, "tuple", "org.apache.cassandra.db.marshal.TupleType") \
+  /* Yugabyte specific types start here */ \
+  XX(CASS_VALUE_TYPE_JSON,  0x0080, "jsonb", "")
 
 typedef enum CassValueType_ {
   CASS_VALUE_TYPE_UNKNOWN = 0xFFFF,
@@ -4713,7 +4715,7 @@ cass_statement_bind_bool_by_name_n(CassStatement* statement,
                                    cass_bool_t value);
 
 /**
- * Binds an "ascii", "text" or "varchar" to a query or bound statement
+ * Binds an "ascii", "text", "varchar" or "jsonb" to a query or bound statement
  * at the specified index.
  *
  * @public @memberof CassStatement
@@ -4750,7 +4752,7 @@ cass_statement_bind_string_n(CassStatement* statement,
                              size_t value_length);
 
 /**
- * Binds an "ascii", "text" or "varchar" to all the values
+ * Binds an "ascii", "text", "varchar" or "jsonb" to all the values
  * with the specified name.
  *
  * This can only be used with statements created by
@@ -6243,7 +6245,7 @@ cass_collection_append_bool(CassCollection* collection,
                             cass_bool_t value);
 
 /**
- * Appends an "ascii", "text" or "varchar" to the collection.
+ * Appends an "ascii", "text", "varchar" or "jsonb" to the collection.
  *
  * @public @memberof CassCollection
  *
@@ -6651,7 +6653,7 @@ cass_tuple_set_bool(CassTuple* tuple,
                     cass_bool_t value);
 
 /**
- * Sets an "ascii", "text" or "varchar" in a tuple at the specified index.
+ * Sets an "ascii", "text", "varchar" or "jsonb" in a tuple at the specified index.
  *
  * @cassandra{2.1+}
  *
@@ -7432,7 +7434,7 @@ cass_user_type_set_bool_by_name_n(CassUserType* user_type,
 
 
 /**
- * Sets an "ascii", "text" or "varchar" in a user defined type at the
+ * Sets an "ascii", "text", "varchar" or "jsonb" in a user defined type at the
  * specified index.
  *
  * @cassandra{2.1+}
@@ -7472,7 +7474,7 @@ cass_user_type_set_string_n(CassUserType* user_type,
                             size_t value_length);
 
 /**
- * Sets an "ascii", "text" or "varchar" in a user defined type at the
+ * Sets an "ascii", "text", "varchar" or "jsonb" in a user defined type at the
  * specified name.
  *
  * @cassandra{2.1+}

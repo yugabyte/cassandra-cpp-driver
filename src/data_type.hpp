@@ -45,7 +45,8 @@ inline bool is_int64_type(CassValueType value_type) {
 inline bool is_string_type(CassValueType value_type) {
   return value_type == CASS_VALUE_TYPE_ASCII ||
       value_type == CASS_VALUE_TYPE_TEXT ||
-      value_type == CASS_VALUE_TYPE_VARCHAR;
+      value_type == CASS_VALUE_TYPE_VARCHAR ||
+      value_type == CASS_VALUE_TYPE_JSON;
 }
 
 inline bool is_bytes_type(CassValueType value_type) {
