@@ -23,37 +23,33 @@
 
 namespace cass {
 
-int QueryRequest::encode(int version, RequestCallback* callback, BufferVec* bufs) const {
-  if (version == 1) {
-    return encode_v1(callback, bufs);
+int QueryRequest::encode(ProtocolVersion version, RequestCallback* callback, BufferVec* bufs) const {
+  int32_t result;
+  int32_t length = encode_query_or_id(bufs);
+  if (has_names_for_values()) {
+    length += encode_begin(version, value_names_->size(), callback, bufs);
+    result = encode_values_with_names(version, callback, bufs);
   } else {
-    int32_t result;
-    int32_t length = encode_query_or_id(bufs);
-    if (has_names_for_values()) {
-      length += encode_begin(version, value_names_->size(), callback, bufs);
-      result = encode_values_with_names(version, callback, bufs);
-    } else {
-      length += encode_begin(version, elements().size(), callback, bufs);
-      result = encode_values(version, callback, bufs);
-    }
-    if (result < 0) return result;
-    length += result;
-    length += encode_end(version, callback, bufs);
-    return length;
+    length += encode_begin(version, elements().size(), callback, bufs);
+    result = encode_values(version, callback, bufs);
   }
+  if (result < 0) return result;
+  length += result;
+  length += encode_end(version, callback, bufs);
+  return length;
 }
 
 // Format: [<name_1><value_1>...<name_n><value_n>]
 // where:
 // <name> is a [string]
 // <value> is a [bytes]
-int32_t QueryRequest::encode_values_with_names(int version, RequestCallback* callback, BufferVec* bufs) const {
+int32_t QueryRequest::encode_values_with_names(ProtocolVersion version, RequestCallback* callback, BufferVec* bufs) const {
   int32_t size = 0;
   for (size_t i = 0; i < value_names_->size(); ++i) {
     const Buffer& name_buf = (*value_names_)[i].buf;
     bufs->push_back(name_buf);
 
-    Buffer value_buf(elements()[i].get_buffer(version));
+    Buffer value_buf(elements()[i].get_buffer());
     bufs->push_back(value_buf);
 
     size += name_buf.size() + value_buf.size();
@@ -64,7 +60,7 @@ int32_t QueryRequest::encode_values_with_names(int version, RequestCallback* cal
 size_t QueryRequest::get_indices(StringRef name, IndexVec* indices) {
   if (!value_names_) {
     set_has_names_for_values(true);
-    value_names_.reset(new ValueNameHashTable(elements().size()));
+    value_names_.reset(Memory::allocate<ValueNameHashTable>(elements().size()));
   }
 
   if (value_names_->get_indices(name, indices) == 0) {
