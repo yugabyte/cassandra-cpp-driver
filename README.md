@@ -1,4 +1,4 @@
-# DataStax C/C++ Driver for Apache Cassandra
+# YugaByte C++ Driver for YugaByte DB's Cassandra-compatible YCQL API
 
 [![Build Status: Linux](https://travis-ci.org/datastax/cpp-driver.svg?branch=master)](https://travis-ci.org/datastax/cpp-driver)
 [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/ec0x0vuk59as28r6/branch/master?svg=true)](https://ci.appveyor.com/project/DataStax/cpp-driver)
@@ -169,7 +169,7 @@ int main(int argc, char* argv[]) {
 ```
 
 ## License
-Copyright (c) DataStax, Inc.
+Copyright (c) 2018 YugaByte, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
