@@ -1,19 +1,14 @@
-# DataStax C/C++ Driver for Apache Cassandra
+# YugaByte C++ Driver for YugaByte DB's Cassandra-compatible YCQL API
 
-[![Build Status: Linux](https://travis-ci.org/datastax/cpp-driver.svg?branch=master)](https://travis-ci.org/datastax/cpp-driver)
-[![Build Status: Windows](https://ci.appveyor.com/api/projects/status/ec0x0vuk59as28r6/branch/master?svg=true)](https://ci.appveyor.com/project/DataStax/cpp-driver)
+A modern, feature-rich] and highly tunable C/C++ client library for YugaByte DB's Cassandra-compatible YCQL API
+using exclusively Cassandra's binary protocol and Cassandra Query Language v3.
 
-A modern, feature-rich] and highly tunable C/C++ client library for
-[Apache Cassandra] 2.1+ using exclusively Cassandra's binary protocol and
-Cassandra Query Language v3. __Use the [DSE C/C++ driver] for better
-compatibility and support for [DataStax Enterprise]__.
 
 ## Getting the Driver
 
 Binary versions of the driver, available for multiple operating systems and
 multiple architectures, can be obtained from our [download server]. The
-source code is made available via [GitHub]. __If using [DataStax Enterprise]
-use the [DSE C/C++ driver] instead__.
+source code is made available via [GitHub].
 
 Packages for the driver's dependencies, libuv (1.x)
 and OpenSSL, are also provided under the `dependencies` directory for each
@@ -57,35 +52,19 @@ provided with the distribution:
 ## Compatibility
 
 This driver works exclusively with the Cassandra Query Language v3 (CQL3) and
-Cassandra's native protocol. The current version works with:
-
-* Apache Cassandra versions 2.1, 2.2 and 3.0+
-* Architectures: 32-bit (x86) and 64-bit (x64)
-* Compilers: GCC 4.1.2+, Clang 3.4+, and MSVC 2010/2012/2013/2015/2017
-
-If using [DataStax Enterprise] the [DSE C/C++ driver] provides more features and
-better compatibility. A complete compatibility matrix for both Apache Cassandra
-and DataStax Enterprise can be found [here][cpp-driver-compatability-matrix].
-
-__Disclaimer__: DataStax products do not support big-endian systems.
+Cassandra's native protocol for YugaByte DB's Cassandra-compatible YCQL API.
 
 ## Documentation
 
 * [Home]
 * [API]
-* [Getting Started]
+* [Getting started guide][getting-started]: https://docs.yugabyte.com/latest/develop/client-drivers/csharp/
 * [Building]
 
 ## Getting Help
-
-* JIRA: https://datastax-oss.atlassian.net/browse/CPP
-* Mailing List: https://groups.google.com/a/lists.datastax.com/forum/#!forum/cpp-driver-user
-* DataStax Academy via Slack: https://academy.datastax.com/slack
+Please report any issues on github.
 
 ## Feedback Requested
-
-**Help us focus our efforts!** [Provide your input] on the C/C++ Driver Platform
-and Runtime Survey (we kept it short).
 
 ## Examples
 
@@ -168,7 +147,7 @@ int main(int argc, char* argv[]) {
 ```
 
 ## License
-Copyright (c) DataStax, Inc.
+Copyright 2018, YugaByte, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -181,6 +160,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
 
 [Apache Cassandra]: http://cassandra.apache.org
 [DSE C/C++ driver]: http://docs.datastax.com/en/developer/cpp-driver-dse/latest
