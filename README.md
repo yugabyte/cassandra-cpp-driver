@@ -2,15 +2,13 @@
 
 A modern, feature-rich] and highly tunable C/C++ client library for
 [Apache Cassandra] 2.1+ using exclusively Cassandra's binary protocol and
-Cassandra Query Language v3. __Use the [DSE C/C++ driver] for better
-compatibility and support for [DataStax Enterprise]__.
+Cassandra Query Language v3. 
 
 ## Getting the Driver
 
 Binary versions of the driver, available for multiple operating systems and
 multiple architectures, can be obtained from our [download server]. The
-source code is made available via [GitHub]. __If using [DataStax Enterprise]
-use the [DSE C/C++ driver] instead__.
+source code is made available via [GitHub]. 
 
 Packages for the driver's dependencies, libuv (1.x)
 and OpenSSL, are also provided under the `dependencies` directory for each
@@ -55,17 +53,7 @@ provided with the distribution:
 ## Compatibility
 
 This driver works exclusively with the Cassandra Query Language v3 (CQL3) and
-Cassandra's native protocol. The current version works with:
-
-* Apache Cassandra versions 2.1, 2.2 and 3.0+
-* Architectures: 32-bit (x86) and 64-bit (x64)
-* Compilers: GCC 4.1.2+, Clang 3.4+, and MSVC 2010/2012/2013/2015/2017
-
-If using [DataStax Enterprise] the [DSE C/C++ driver] provides more features and
-better compatibility. A complete compatibility matrix for both Apache Cassandra
-and DataStax Enterprise can be found [here][cpp-driver-compatability-matrix].
-
-__Disclaimer__: DataStax products do not support big-endian systems.
+Cassandra's native protocol for YugaByte DB's Cassandra-compatible YCQL API.
 
 ## Documentation
 
@@ -76,14 +64,7 @@ __Disclaimer__: DataStax products do not support big-endian systems.
 
 ## Getting Help
 
-* JIRA: https://datastax-oss.atlassian.net/browse/CPP
-* Mailing List: https://groups.google.com/a/lists.datastax.com/forum/#!forum/cpp-driver-user
-* DataStax Academy via Slack: https://academy.datastax.com/slack
-
-## Feedback Requested
-
-**Help us focus our efforts!** [Provide your input] on the C/C++ Driver Platform
-and Runtime Survey (we kept it short).
+Please report any issues on github.
 
 ## Examples
 
