@@ -45,7 +45,6 @@ Cassandra's native protocol for YugaByte DB's Cassandra-compatible YCQL API.
 * [Home]
 * [API]
 * [Getting Started]
-* [Building]
 
 ## Getting Help
 
@@ -151,7 +150,7 @@ limitations under the License.
 [DataStax Enterprise]: http://www.datastax.com/products/datastax-enterprise
 [Examples]: examples/
 [download server]: http://downloads.datastax.com/cpp-driver
-[GitHub]: https://github.com/datastax/cpp-driver
+[GitHub]: https://github.com/YugaByte/cassandra-cpp-driver
 [cpp-driver-compatability-matrix]: https://docs.datastax.com/en/developer/driver-matrix/doc/cppDrivers.html#cpp-drivers
 [Home]: https://github.com/YugaByte/cassandra-cpp-driver
 [API]: http://docs.datastax.com/en/developer/cpp-driver/latest/api
