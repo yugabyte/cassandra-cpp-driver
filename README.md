@@ -1,26 +1,11 @@
 # YugaByte C++ Driver for YugaByte DB's Cassandra-compatible YCQL API
 
-A modern, feature-rich] and highly tunable C/C++ client library for
-[Apache Cassandra] 2.1+ using exclusively Cassandra's binary protocol and
-Cassandra Query Language v3. 
+A modern, feature-rich] and highly tunable C/C++ client library for YugaByte DB's Cassandra-compatible YCQL API
+using exclusively Cassandra's binary protocol and Cassandra Query Language v3. 
 
 ## Getting the Driver
 
-Binary versions of the driver, available for multiple operating systems and
-multiple architectures, can be obtained from our [download server]. The
-source code is made available via [GitHub]. 
-
-Packages for the driver's dependencies, libuv (1.x)
-and OpenSSL, are also provided under the `dependencies` directory for each
-platform (if applicable). __Note__: CentOS and Ubuntu use the version of OpenSSL
-provided with the distribution:
-
-* [CentOS 6][centos-6-dependencies]
-* [CentOS 7][centos-7-dependencies]
-* [Ubuntu 14.04][ubuntu-14-04-dependencies]
-* [Ubuntu 16.04][ubuntu-16-04-dependencies]
-* [Ubuntu 18.04][ubuntu-18-04-dependencies]
-* [Windows][windows-dependencies]
+The source code is made available via [GitHub]. The build instructions are at [Getting Started].
 
 ## Features
 
@@ -168,9 +153,9 @@ limitations under the License.
 [download server]: http://downloads.datastax.com/cpp-driver
 [GitHub]: https://github.com/datastax/cpp-driver
 [cpp-driver-compatability-matrix]: https://docs.datastax.com/en/developer/driver-matrix/doc/cppDrivers.html#cpp-drivers
-[Home]: http://docs.datastax.com/en/developer/cpp-driver/latest
+[Home]: https://github.com/YugaByte/cassandra-cpp-driver
 [API]: http://docs.datastax.com/en/developer/cpp-driver/latest/api
-[Getting Started]: http://docs.datastax.com/en/developer/cpp-driver/latest/topics
+[Getting Started]: https://docs.yugabyte.com/latest/develop/client-drivers/cpp/
 [Building]: http://docs.datastax.com/en/developer/cpp-driver/latest/topics/building
 [Provide your input]: http://goo.gl/forms/ihKC5uEQr6
 [centos-6-dependencies]: http://downloads.datastax.com/cpp-driver/centos/6/dependencies
