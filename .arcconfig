@@ -1,0 +1,8 @@
+{
+  "phabricator.uri" : "https://phabricator.dev.yugabyte.com/",
+  "repository.callsign": "CCPPD",
+  "git:arc.feature.start.default" : "origin/2.9.0-yb",
+  "arc.land.onto.default": "2.9.0-yb",
+  "arc.land.remote.default": "origin",
+  "arc.feature.start.default" : "2.9.0-yb"
+}
