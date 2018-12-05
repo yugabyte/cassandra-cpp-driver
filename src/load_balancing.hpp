@@ -51,8 +51,11 @@ typedef enum CassHostDistance_ {
 
 namespace cass {
 
+class ControlConnection;
+class Metadata;
 class Random;
 class RequestHandler;
+class Session;
 class TokenMap;
 
 inline bool is_dc_local(CassConsistency cl) {
@@ -79,11 +82,12 @@ public:
   typedef SharedRefPtr<LoadBalancingPolicy> Ptr;
 
   LoadBalancingPolicy()
-    : RefCounted<LoadBalancingPolicy>() {}
+    : RefCounted<LoadBalancingPolicy>(), session_(NULL) {}
 
   virtual ~LoadBalancingPolicy() {}
 
   virtual void init(const Host::Ptr& connected_host, const HostMap& hosts, Random* random) = 0;
+  virtual void init_session(Session* session) { session_=session; }
 
   virtual void register_handles(uv_loop_t* loop) {}
   virtual void close_handles() {}
@@ -92,9 +96,23 @@ public:
 
   virtual QueryPlan* new_query_plan(const std::string& keyspace,
                                     RequestHandler* request_handler,
-                                    const TokenMap* token_map) = 0;
+                                    Session* session) {
+    init_session(session);
+    return new_query_plan(keyspace, request_handler);
+  }
+
+  virtual QueryPlan* new_query_plan(const std::string& keyspace,
+                                    RequestHandler* request_handler) = 0;
 
   virtual LoadBalancingPolicy* new_instance() = 0;
+
+protected:
+  ControlConnection* control_connection();
+
+  const Metadata* metadata() const;
+  const TokenMap* token_map() const;
+
+  Session* session_;
 };
 
 
@@ -108,6 +126,14 @@ public:
   virtual void init(const Host::Ptr& connected_host, const HostMap& hosts, Random* random) {
     return child_policy_->init(connected_host, hosts, random);
   }
+
+  virtual void init_session(Session* session) {
+    LoadBalancingPolicy::init_session(session);
+    child_policy_->init_session(session);
+  }
+
+  virtual void register_handles(uv_loop_t* loop) { child_policy_->register_handles(loop); }
+  virtual void close_handles() { child_policy_->close_handles(); }
 
   virtual CassHostDistance distance(const Host::Ptr& host) const { return child_policy_->distance(host); }
 

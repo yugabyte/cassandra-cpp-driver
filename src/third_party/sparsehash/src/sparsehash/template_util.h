@@ -46,8 +46,8 @@
 // Both of these outcomes means that we may be able to directly replace
 // some of these with boost equivalents.
 //
-#ifndef BASE_TEMPLATE_UTIL_H_
-#define BASE_TEMPLATE_UTIL_H_
+#ifndef SPARSE_BASE_TEMPLATE_UTIL_H_
+#define SPARSE_BASE_TEMPLATE_UTIL_H_
 
 #include <sparsehash/internal/sparseconfig.h>
 _START_GOOGLE_NAMESPACE_
@@ -131,4 +131,4 @@ struct or_ : public integral_constant<bool, (A::value || B::value)> {
 
 _END_GOOGLE_NAMESPACE_
 
-#endif  // BASE_TEMPLATE_UTIL_H_
+#endif  // SPARSE_BASE_TEMPLATE_UTIL_H_

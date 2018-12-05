@@ -90,8 +90,9 @@ public:
     return prepared_metadata_.copy();
   }
 
-private:
   std::string keyspace() const;
+
+private:
   void set_keyspace(const std::string& keyspace);
 
 public:
@@ -114,7 +115,13 @@ public:
   Future::Ptr execute(const Request::ConstPtr& request,
                       const Address* preferred_address = NULL);
 
+  const PreparedMetadata& prepared_metadata() const { return prepared_metadata_; }
+
   const Metadata& metadata() const { return metadata_; }
+
+  const TokenMap* token_map() const { return token_map_.get(); }
+
+  ControlConnection* control_connection() { return &control_connection_; }
 
   int protocol_version() const {
     return control_connection_.protocol_version();

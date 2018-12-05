@@ -37,6 +37,8 @@ void LatencyAwarePolicy::init(const Host::Ptr& connected_host,
 }
 
 void LatencyAwarePolicy::register_handles(uv_loop_t* loop) {
+  ChainedLoadBalancingPolicy::register_handles(loop);
+
   calculate_min_average_task_ = PeriodicTask::start(loop,
                                                     settings_.update_rate_ms,
                                                     this,
@@ -48,15 +50,15 @@ void LatencyAwarePolicy::close_handles() {
   if (calculate_min_average_task_) {
     PeriodicTask::stop(calculate_min_average_task_);
   }
+
+  ChainedLoadBalancingPolicy::close_handles();
 }
 
 QueryPlan* LatencyAwarePolicy::new_query_plan(const std::string& keyspace,
-                                              RequestHandler* request_handler,
-                                              const TokenMap* token_map) {
+                                              RequestHandler* request_handler) {
   return new LatencyAwareQueryPlan(this,
                                    child_policy_->new_query_plan(keyspace,
-                                                                 request_handler,
-                                                                 token_map));
+                                                                 request_handler));
 }
 
 void LatencyAwarePolicy::on_add(const Host::Ptr& host) {

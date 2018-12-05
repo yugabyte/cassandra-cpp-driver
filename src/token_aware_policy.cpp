@@ -45,8 +45,7 @@ void TokenAwarePolicy::init(const Host::Ptr& connected_host,
 }
 
 QueryPlan* TokenAwarePolicy::new_query_plan(const std::string& keyspace,
-                                            RequestHandler* request_handler,
-                                            const TokenMap* token_map) {
+                                            RequestHandler* request_handler) {
   if (request_handler != NULL) {
     const RoutableRequest* request = static_cast<const RoutableRequest*>(request_handler->request());
     switch (request->opcode()) {
@@ -56,13 +55,12 @@ QueryPlan* TokenAwarePolicy::new_query_plan(const std::string& keyspace,
       case CQL_OPCODE_BATCH:
         std::string routing_key;
         if (request->get_routing_key(&routing_key) && !keyspace.empty()) {
-          if (token_map != NULL) {
-            CopyOnWriteHostVec replicas = token_map->get_replicas(keyspace, routing_key);
+          if (token_map() != NULL) {
+            CopyOnWriteHostVec replicas = token_map()->get_replicas(keyspace, routing_key);
             if (replicas && !replicas->empty()) {
               return new TokenAwareQueryPlan(child_policy_.get(),
                                              child_policy_->new_query_plan(keyspace,
-                                                                           request_handler,
-                                                                           token_map),
+                                                                           request_handler),
                                              replicas,
                                              index_++);
             }
@@ -75,9 +73,7 @@ QueryPlan* TokenAwarePolicy::new_query_plan(const std::string& keyspace,
         break;
     }
   }
-  return child_policy_->new_query_plan(keyspace,
-                                       request_handler,
-                                       token_map);
+  return child_policy_->new_query_plan(keyspace, request_handler);
 }
 
 Host::Ptr TokenAwarePolicy::TokenAwareQueryPlan::compute_next()  {

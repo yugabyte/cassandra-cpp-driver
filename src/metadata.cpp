@@ -791,7 +791,8 @@ Metadata::SchemaSnapshot Metadata::schema_snapshot(int protocol_version, const V
   return SchemaSnapshot(schema_snapshot_version_,
                         protocol_version,
                         cassandra_version,
-                        front_.keyspaces());
+                        front_.keyspaces(),
+                        front_.partitions());
 }
 
 void Metadata::update_keyspaces(int protocol_version, const VersionNumber& cassandra_version, ResultResponse* result) {
@@ -885,6 +886,17 @@ void Metadata::update_aggregates(int protocol_version, const VersionNumber& cass
     updating_->update_aggregates(protocol_version, cassandra_version, cache_, result);
   } else {
     updating_->update_aggregates(protocol_version, cassandra_version, cache_, result);
+  }
+}
+
+void Metadata::update_partitions(int protocol_version, const VersionNumber& cassandra_version, ResultResponse* result) {
+  schema_snapshot_version_++;
+
+  if (is_front_buffer()) {
+    ScopedMutex l(&mutex_);
+    updating_->update_partitions(protocol_version, cassandra_version, cache_, result);
+  } else {
+    updating_->update_partitions(protocol_version, cassandra_version, cache_, result);
   }
 }
 
@@ -2151,6 +2163,97 @@ void Metadata::InternalData::update_aggregates(int protocol_version, const Versi
                                                                          aggregate_name, signature,
                                                                          keyspace,
                                                                          buffer, row)));
+  }
+}
+
+static int32_t bytes_to_hash_code(const char* data, int32_t size) {
+  int32_t result = 0;
+  for (int32_t i = 0; i < size; ++i) {
+      result = (result << 8) | static_cast<unsigned char>(data[i]);
+  }
+  return result;
+}
+
+void Metadata::InternalData::update_partitions(int protocol_version, const VersionNumber& cassandra_version, SimpleDataTypeCache& cache, ResultResponse* result) {
+  RefBuffer::Ptr buffer = result->buffer();
+  ResultIterator rows(result);
+  std::map<std::string, std::list<PartitionMetadata>> splits_source;
+
+  while (rows.next()) {
+    std::string keyspace_name;
+    std::string table_name;
+    int32_t start_key = 0, end_key = 0;
+    const Row* const row = rows.row();
+
+    if (!row->get_string_by_name("keyspace_name", &keyspace_name)) {
+      LOG_ERROR("Unable to get column value for 'keyspace_name'");
+      continue;
+    }
+
+    if (!row->get_string_by_name("table_name", &table_name)) {
+      LOG_ERROR("Unable to get column value for 'table_name'");
+      continue;
+    }
+
+    const std::string full_table_name = keyspace_name + "." + table_name;
+    const Value* const start = row->get_by_name("start_key");
+
+    if (start == NULL ||
+        start->value_type() != CASS_VALUE_TYPE_BLOB) {
+      LOG_ERROR("Unable to get column value for 'start_key'");
+      continue;
+    } else {
+      start_key = bytes_to_hash_code(start->data(), start->size());
+    }
+
+    const Value* const end = row->get_by_name("end_key");
+
+    if (end == NULL ||
+        end->value_type() != CASS_VALUE_TYPE_BLOB) {
+      LOG_ERROR("Unable to get column value for 'end_key'");
+      continue;
+    } else {
+      end_key = bytes_to_hash_code(end->data(), end->size());
+    }
+
+    const Value* const addresses = row->get_by_name("replica_addresses");
+    PartitionMetadata partition(start_key, end_key);
+
+    if (addresses == NULL ||
+        addresses->value_type() != CASS_VALUE_TYPE_MAP ||
+        addresses->primary_value_type() != CASS_VALUE_TYPE_INET ||
+        addresses->secondary_value_type() != CASS_VALUE_TYPE_VARCHAR) {
+      LOG_ERROR("Unable to get column value for 'replica_addresses'");
+      continue;
+    } else {
+      MapIterator iterator(addresses);
+
+      while (iterator.next()) {
+        const Value* const address = iterator.key();
+        const std::string role  = iterator.value()->to_string();
+
+        Address replica_address;
+        if (!Address::from_inet(address->data(), address->size(), 0, &replica_address)) {
+          LOG_WARN("Invalid address format for replica address");
+          continue;
+        }
+
+        if (role == "LEADER") {
+          partition.host_ips_.push_front(replica_address.to_string(false));
+        } else {
+          partition.host_ips_.push_back(replica_address.to_string(false));
+        }
+      }
+    }
+
+    splits_source[full_table_name].push_back(partition);
+  }
+
+  partitions_->clear();
+  for (auto const& it : splits_source) {
+    const TableSplitMetadata table_partitions(it.second);
+    LOG_TRACE("%s:%s", it.first.c_str(), table_partitions.to_string().c_str());
+    (*partitions_)[it.first] = table_partitions;
   }
 }
 

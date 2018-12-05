@@ -56,6 +56,9 @@
 #define SELECT_FUNCTIONS_30 "SELECT * FROM system_schema.functions"
 #define SELECT_AGGREGATES_30 "SELECT * FROM system_schema.aggregates"
 
+#define YB_SELECT_PARTITIONS "SELECT keyspace_name, table_name, start_key, end_key, " \
+                             "replica_addresses FROM system.partitions"
+
 namespace cass {
 
 class ControlStartupQueryPlan : public QueryPlan {
@@ -514,6 +517,13 @@ void ControlConnection::on_query_hosts(ControlConnection* control_connection,
   }
 }
 
+void ControlConnection::refresh_partitions() {
+  SharedRefPtr<ControlMultipleRequestCallback<UnusedData> > callback(
+        new ControlMultipleRequestCallback<UnusedData>(this, ControlConnection::on_query_meta_schema, UnusedData()));
+
+  callback->execute_query("partitions", YB_SELECT_PARTITIONS);
+}
+
 //TODO: query and callbacks should be in Metadata
 // punting for now because of tight coupling of Session and CC state
 void ControlConnection::query_meta_schema() {
@@ -549,6 +559,8 @@ void ControlConnection::query_meta_schema() {
       }
     }
   }
+
+  callback->execute_query("partitions", YB_SELECT_PARTITIONS);
 }
 
 void ControlConnection::on_query_meta_schema(ControlConnection* control_connection,
@@ -615,6 +627,20 @@ void ControlConnection::on_query_meta_schema(ControlConnection* control_connecti
     ResultResponse* aggregates_result;
     if (MultipleRequestCallback::get_result_response(responses, "aggregates", &aggregates_result)) {
       session->metadata().update_aggregates(protocol_version, cassandra_version, aggregates_result);
+    }
+
+    ResultResponse* partitions_result;
+    if (MultipleRequestCallback::get_result_response(responses, "partitions", &partitions_result)) {
+      session->metadata().update_partitions(protocol_version, cassandra_version, partitions_result);
+    }
+
+    session->metadata().swap_to_back_and_update_front();
+  } else {
+    session->metadata().clear_and_update_back(cassandra_version);
+
+    ResultResponse* partitions_result = NULL;
+    if (MultipleRequestCallback::get_result_response(responses, "partitions", &partitions_result)) {
+      session->metadata().update_partitions(protocol_version, cassandra_version, partitions_result);
     }
 
     session->metadata().swap_to_back_and_update_front();

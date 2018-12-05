@@ -47,11 +47,8 @@ CassHostDistance ListPolicy::distance(const Host::Ptr& host) const {
 }
 
 QueryPlan* ListPolicy::new_query_plan(const std::string& keyspace,
-                                      RequestHandler* request_handler,
-                                      const TokenMap* token_map) {
-  return child_policy_->new_query_plan(keyspace,
-                                       request_handler,
-                                       token_map);
+                                      RequestHandler* request_handler) {
+  return child_policy_->new_query_plan(keyspace, request_handler);
 }
 
 void ListPolicy::on_add(const Host::Ptr& host) {

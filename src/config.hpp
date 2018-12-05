@@ -26,6 +26,7 @@
 #include "retry_policy.hpp"
 #include "ssl.hpp"
 #include "timestamp_generator.hpp"
+#include "partition_aware_policy.hpp"
 #include "token_aware_policy.hpp"
 #include "whitelist_policy.hpp"
 #include "blacklist_policy.hpp"
@@ -67,7 +68,9 @@ public:
       , auth_provider_(new AuthProvider())
       , load_balancing_policy_(new DCAwarePolicy())
       , speculative_execution_policy_(new NoSpeculativeExecutionPolicy())
-      , token_aware_routing_(true)
+      , partition_aware_routing_(true) // Enabled by default
+      , partition_refresh_frequency_secs_(CASS_DEFAULT_METADATA_REFRESH_FREQUENCY_SECS)
+      , token_aware_routing_(true) // Enabled by default
       , latency_aware_routing_(false)
       , host_targeting_(false)
       , tcp_nodelay_enable_(true)
@@ -103,6 +106,9 @@ public:
     }
     if (token_aware_routing()) {
       chain = new TokenAwarePolicy(chain);
+    }
+    if (partition_aware_routing()) {
+      chain = new PartitionAwarePolicy(chain, partition_refresh_frequency_secs_);
     }
     if (latency_aware()) {
       chain = new LatencyAwarePolicy(chain, latency_aware_routing_settings_);
@@ -290,6 +296,14 @@ public:
     ssl_context_.reset(ssl_context);
   }
 
+  bool partition_aware_routing() const { return partition_aware_routing_; }
+
+  void set_partition_aware_routing(bool is_partition_aware,
+                                   unsigned refresh_frequency_secs = CASS_DEFAULT_METADATA_REFRESH_FREQUENCY_SECS) {
+    partition_aware_routing_ = is_partition_aware;
+    partition_refresh_frequency_secs_ = refresh_frequency_secs;
+  }
+
   bool token_aware_routing() const { return token_aware_routing_; }
 
   void set_token_aware_routing(bool is_token_aware) { token_aware_routing_ = is_token_aware; }
@@ -428,6 +442,8 @@ private:
   LoadBalancingPolicy::Ptr load_balancing_policy_;
   SpeculativeExecutionPolicy::Ptr speculative_execution_policy_;
   SslContext::Ptr ssl_context_;
+  bool partition_aware_routing_;
+  unsigned partition_refresh_frequency_secs_;
   bool token_aware_routing_;
   bool latency_aware_routing_;
   bool host_targeting_;

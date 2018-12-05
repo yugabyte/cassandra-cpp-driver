@@ -54,8 +54,8 @@
 //   is_convertible
 // We can add more type traits as required.
 
-#ifndef BASE_TYPE_TRAITS_H_
-#define BASE_TYPE_TRAITS_H_
+#ifndef SPARSE_BASE_TYPE_TRAITS_H_
+#define SPARSE_BASE_TYPE_TRAITS_H_
 
 #include <sparsehash/internal/sparseconfig.h>
 #include <utility>                  // For pair
@@ -339,4 +339,4 @@ _END_GOOGLE_NAMESPACE_
     typedef int Dummy_Type_For_PROPAGATE_POD_FROM_TEMPLATE_ARGUMENT
 #define ENFORCE_POD(TypeName) typedef int Dummy_Type_For_ENFORCE_POD
 
-#endif  // BASE_TYPE_TRAITS_H_
+#endif  // SPARSE_BASE_TYPE_TRAITS_H_

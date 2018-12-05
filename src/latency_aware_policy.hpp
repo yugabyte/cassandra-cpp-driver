@@ -57,8 +57,7 @@ public:
   virtual void close_handles();
 
   virtual QueryPlan* new_query_plan(const std::string& keyspace,
-                                    RequestHandler* request_handler,
-                                    const TokenMap* token_map);
+                                    RequestHandler* request_handler);
 
   virtual LoadBalancingPolicy* new_instance() {
     return new LatencyAwarePolicy(child_policy_->new_instance(), settings_);

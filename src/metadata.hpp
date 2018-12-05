@@ -32,6 +32,7 @@
 #include <string>
 #include <uv.h>
 #include <vector>
+#include <list>
 
 namespace cass {
 
@@ -597,6 +598,98 @@ private:
   CopyOnWritePtr<AggregateMetadata::Map> aggregates_;
 };
 
+// The metadata for one table partition. It maintains the partition's range (start and end key)
+// and hosts (leader and followers).
+struct PartitionMetadata
+{
+  typedef std::list<std::string> IpList;
+
+  // The partition start -- inclusive bound.
+  int32_t start_key_;
+  // The partition end -- exclusive bound.
+  int32_t end_key_;
+  // The list of hosts -- first one should be the leader, then the followers in no particular order.
+  // TODO We should make the leader explicit here and in the return type of the getQueryPlan method
+  // to be able to distinguish the case where the leader is missing so the hosts are all followers.
+  IpList host_ips_;
+
+  PartitionMetadata(int32_t start_key = 0, int32_t end_key = 0)
+    : start_key_(start_key),  end_key_(end_key) {}
+
+  bool is_valid() const { return start_key_ >= 0; }
+
+  std::string to_string() const {
+    std::stringstream ss;
+    ss << "[0x" << std::hex << start_key_ << " - 0x" << end_key_ << "] ->";
+    for (const std::string& ip : host_ips_) {
+      ss << " " << ip;
+    }
+
+    return ss.str();
+  }
+
+  // Can be sorted by Start Key.
+  bool operator <(const PartitionMetadata& pm) const {
+    return start_key_ < pm.start_key_;
+  }
+};
+
+// The partition split for a table. It maintains a map from start key to partition metadata
+// for each partition split of the table.
+class TableSplitMetadata
+{
+public:
+  // Map: full table name -> table split partitions - array of {start_key, end_key, hosts}.
+  typedef std::map<std::string, TableSplitMetadata> Map;
+  typedef CopyOnWritePtr<TableSplitMetadata::Map> MapPtr;
+
+  TableSplitMetadata() = default;
+
+  TableSplitMetadata(const std::list<PartitionMetadata>& source){
+    partitions_.resize(source.size());
+    size_t i = 0;
+
+    for (const PartitionMetadata& partition : source) {
+      partitions_[i++] = partition;
+    }
+
+    // Sort partitions by Start Key.
+    std::sort(partitions_.begin(), partitions_.end());
+  }
+
+  // Returns the partition metadata for the partition key in the given table.
+  // Returns null when there is no partition information available.
+  const PartitionMetadata* get_partition_metadata(int32_t key) const {
+    const int index = std::upper_bound(
+        partitions_.begin(), partitions_.end(), PartitionMetadata(key, key)) -
+        partitions_.begin() - 1;
+    if (index < 0) { // key less than minimal start key
+      return nullptr;
+    }
+    return &partitions_[index];
+  }
+
+  // Returns the hosts for the partition key in the given table.
+  // Returns null when there is no hosts information available.
+  const PartitionMetadata::IpList* get_hosts(int32_t key) const {
+    const PartitionMetadata* const partition = get_partition_metadata(key);
+    return partition == nullptr ? nullptr : &partition->host_ips_;
+  }
+
+  std::string to_string() const {
+    std::string str;
+    for (const PartitionMetadata& partition : partitions_) {
+      str += " {" + partition.to_string() + "}";
+    }
+
+    return str;
+  }
+
+private:
+  // The partition split of a table. It's sorted by the Start Key.
+  std::vector<PartitionMetadata> partitions_;
+};
+
 class Metadata {
 public:
   class KeyspaceIterator : public MetadataIteratorImpl<MapIteratorImpl<KeyspaceMetadata> > {
@@ -611,11 +704,13 @@ public:
     SchemaSnapshot(uint32_t version,
                    int protocol_version,
                    const VersionNumber& cassandra_version,
-                   const KeyspaceMetadata::MapPtr& keyspaces)
+                   const KeyspaceMetadata::MapPtr& keyspaces,
+                   const TableSplitMetadata::MapPtr& partitions)
       : version_(version)
       , protocol_version_(protocol_version)
       , cassandra_version_(cassandra_version)
-      , keyspaces_(keyspaces) { }
+      , keyspaces_(keyspaces)
+      , partitions_(partitions) { }
 
     uint32_t version() const { return version_; }
     int protocol_version() const { return protocol_version_; }
@@ -627,11 +722,14 @@ public:
     const UserType* get_user_type(const std::string& keyspace_name,
                                   const std::string& type_name) const;
 
+    const TableSplitMetadata::MapPtr& get_partitions() const { return partitions_; }
+
   private:
     uint32_t version_;
     int protocol_version_;
     VersionNumber cassandra_version_;
     KeyspaceMetadata::MapPtr keyspaces_;
+    TableSplitMetadata::MapPtr partitions_;
   };
 
   static std::string full_function_name(const std::string& name, const StringVec& signature);
@@ -657,6 +755,7 @@ public:
   void update_user_types(int protocol_version, const VersionNumber& cassandra_version, ResultResponse* result);
   void update_functions(int protocol_version, const VersionNumber& cassandra_version, ResultResponse* result);
   void update_aggregates(int protocol_version, const VersionNumber& cassandra_version, ResultResponse* result);
+  void update_partitions(int protocol_version, const VersionNumber& cassandra_version, ResultResponse* result);
 
   void drop_keyspace(const std::string& keyspace_name);
   void drop_table_or_view(const std::string& keyspace_name, const std::string& table_or_view_name);
@@ -681,9 +780,11 @@ private:
   class InternalData {
   public:
     InternalData()
-      : keyspaces_(new KeyspaceMetadata::Map()) { }
+      : keyspaces_(new KeyspaceMetadata::Map()),
+        partitions_(new TableSplitMetadata::Map()) { }
 
     const KeyspaceMetadata::MapPtr& keyspaces() const { return keyspaces_; }
+    const TableSplitMetadata::MapPtr& partitions() const { return partitions_; }
 
     void update_keyspaces(int protocol_version, const VersionNumber& cassandra_version, ResultResponse* result);
     void update_tables(int protocol_version, const VersionNumber& cassandra_version, ResultResponse* result);
@@ -694,19 +795,25 @@ private:
     void update_user_types(int protocol_version, const VersionNumber& cassandra_version, SimpleDataTypeCache& cache, ResultResponse* result);
     void update_functions(int protocol_version, const VersionNumber& cassandra_version, SimpleDataTypeCache& cache, ResultResponse* result);
     void update_aggregates(int protocol_version, const VersionNumber& cassandra_version, SimpleDataTypeCache& cache, ResultResponse* result);
+    void update_partitions(int protocol_version, const VersionNumber& cassandra_version, SimpleDataTypeCache& cache, ResultResponse* result);
 
     void drop_keyspace(const std::string& keyspace_name);
     void drop_table_or_view(const std::string& keyspace_name, const std::string& table_or_view_name);
     void drop_user_type(const std::string& keyspace_name, const std::string& type_name);
     void drop_function(const std::string& keyspace_name, const std::string& full_function_name);
     void drop_aggregate(const std::string& keyspace_name, const std::string& full_aggregate_name);
+    void drop_partitions() { partitions_->clear(); }
 
-    void clear() { keyspaces_->clear(); }
+    void clear() { keyspaces_->clear(); partitions_->clear(); }
 
     void swap(InternalData& other) {
-      CopyOnWritePtr<KeyspaceMetadata::Map> temp = other.keyspaces_;
+      CopyOnWritePtr<KeyspaceMetadata::Map> temp_ks = other.keyspaces_;
       other.keyspaces_ = keyspaces_;
-      keyspaces_ = temp;
+      keyspaces_ = temp_ks;
+
+      CopyOnWritePtr<TableSplitMetadata::Map> temp_p = other.partitions_;
+      other.partitions_ = partitions_;
+      partitions_ = temp_p;
     }
 
   private:
@@ -714,6 +821,7 @@ private:
 
   private:
     CopyOnWritePtr<KeyspaceMetadata::Map> keyspaces_;
+    CopyOnWritePtr<TableSplitMetadata::Map> partitions_;
 
   private:
     DISALLOW_COPY_AND_ASSIGN(InternalData);

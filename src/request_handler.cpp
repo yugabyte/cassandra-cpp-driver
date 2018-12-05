@@ -115,14 +115,14 @@ void RequestHandler::schedule_next_execution(const Host::Ptr& current_host) {
   }
 }
 
-void RequestHandler::init(const Config& config, const std::string& connected_keyspace,
-                          const TokenMap* token_map, const PreparedMetadata& prepared_metdata) {
-  wrapper_.init(config, prepared_metdata);
+void RequestHandler::init(Session* session) {
+  const Config& config = session->config();
+  wrapper_.init(config, session->prepared_metadata());
 
   // Attempt to use the statement's keyspace first then if not set then use the session's keyspace
-  const std::string& keyspace(!request()->keyspace().empty() ? request()->keyspace() : connected_keyspace);
+  const std::string& keyspace(!request()->keyspace().empty() ? request()->keyspace() : session->keyspace());
 
-  query_plan_.reset(config.load_balancing_policy()->new_query_plan(keyspace, this, token_map));
+  query_plan_.reset(config.load_balancing_policy()->new_query_plan(keyspace, this, session));
   execution_plan_.reset(config.speculative_execution_policy()->new_plan(keyspace, wrapper_.request().get()));
 }
 

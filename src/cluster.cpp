@@ -276,6 +276,16 @@ CassError cass_cluster_set_load_balance_dc_aware_n(CassCluster* cluster,
   return CASS_OK;
 }
 
+void cass_cluster_set_partition_aware_routing(CassCluster* cluster,
+                                              cass_bool_t enabled,
+                                              cass_int32_t refresh_frequency_secs) {
+  if (refresh_frequency_secs < 0) { // Use frequency by default.
+    cluster->config().set_partition_aware_routing(enabled == cass_true);
+  } else {
+    cluster->config().set_partition_aware_routing(enabled == cass_true, refresh_frequency_secs);
+  }
+}
+
 void cass_cluster_set_token_aware_routing(CassCluster* cluster,
                                           cass_bool_t enabled) {
   cluster->config().set_token_aware_routing(enabled == cass_true);

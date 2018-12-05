@@ -1412,6 +1412,28 @@ cass_cluster_set_load_balance_dc_aware_n(CassCluster* cluster,
                                          cass_bool_t allow_remote_dcs_for_local_cl);
 
 /**
+ * Configures the cluster to use partition-aware request routing or not.
+ *
+ * <b>Important:</b> Partition-aware must be supported by the server side.
+ *
+ * <b>Default:</b> cass_true (enabled).
+ *
+ * This routing policy composes the base routing policy, routing
+ * requests first to the leader replicas.
+ *
+ * @public @memberof CassCluster
+ *
+ * @param[in] cluster
+ * @param[in] enabled
+ * @param[in] refresh_frequency_secs The partitions metadata refresh frequency.
+ * Use -1 for usage of internal defaults. The value is in seconds. System default is 60.
+ */
+CASS_EXPORT void
+cass_cluster_set_partition_aware_routing(CassCluster* cluster,
+                                         cass_bool_t enabled,
+                                         cass_int32_t refresh_frequency_secs);
+
+/**
  * Configures the cluster to use token-aware request routing or not.
  *
  * <b>Important:</b> Token-aware routing depends on keyspace metadata.

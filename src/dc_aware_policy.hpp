@@ -51,8 +51,7 @@ public:
   virtual CassHostDistance distance(const Host::Ptr& host) const;
 
   virtual QueryPlan* new_query_plan(const std::string& keyspace,
-                                    RequestHandler* request_handler,
-                                    const TokenMap* token_map);
+                                    RequestHandler* request_handler);
 
   virtual void on_add(const Host::Ptr& host);
 

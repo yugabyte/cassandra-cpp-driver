@@ -41,6 +41,7 @@ namespace cass {
 class Connection;
 class IOWorker;
 class Pool;
+class Session;
 class Timer;
 class TokenMap;
 
@@ -150,8 +151,7 @@ public:
     , start_time_ns_(uv_hrtime())
     , listener_(listener) { }
 
-  void init(const Config& config, const std::string& connected_keyspace,
-            const TokenMap* token_map, const PreparedMetadata& prepared_metdata);
+  void init(Session* session);
 
   const RequestWrapper& wrapper() const { return wrapper_; }
 

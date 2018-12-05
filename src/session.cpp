@@ -820,11 +820,7 @@ void Session::on_execute(uv_async_t* data) {
     RequestHandler::Ptr request_handler(temp);
     if (request_handler) {
       request_handler->dec_ref(); // Queue reference
-
-      request_handler->init(session->config_,
-                            session->keyspace(),
-                            session->token_map_.get(),
-                            session->prepared_metadata_);
+      request_handler->init(session);
 
       bool is_done = false;
       while (!is_done) {
@@ -863,7 +859,7 @@ void Session::on_execute(uv_async_t* data) {
 }
 
 QueryPlan* Session::new_query_plan() {
-  return config_.load_balancing_policy()->new_query_plan(keyspace(), NULL, token_map_.get());
+  return config_.load_balancing_policy()->new_query_plan(keyspace(), NULL, this);
 }
 
 } // namespace cass

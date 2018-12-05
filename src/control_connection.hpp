@@ -73,6 +73,8 @@ public:
   void on_up(const Address& address);
   void on_down(const Address& address);
 
+  void refresh_partitions();
+
 private:
   template<class T>
   class ControlMultipleRequestCallback : public MultipleRequestCallback {
