@@ -431,6 +431,21 @@ typedef struct CassRetryPolicy_ CassRetryPolicy;
 typedef struct CassCustomPayload_ CassCustomPayload;
 
 /**
+ * Contains the set of Cass Objects used to control a session and execute queries
+ */
+typedef struct SessionObjects {
+  CassFuture* cass_future;
+  CassSession* cass_session;
+  CassCluster* cass_cluster;
+  operator=(SessionObjects obj) {
+    cass_cluster = obj.cass_cluster;
+    cass_session = obj.cass_session;
+    cass_future = obj.cass_future;
+  }
+};
+
+
+/**
  * A snapshot of the session's performance/diagnostic metrics.
  *
  * @struct CassMetrics
@@ -947,6 +962,39 @@ cass_cluster_set_contact_points_n(CassCluster* cluster,
 CASS_EXPORT CassError
 cass_cluster_set_port(CassCluster* cluster,
                       int port);
+
+/**
+ * Sets the local address to bind when connecting to the cluster,
+ * if desired.
+ *
+ * @public @memberof CassCluster
+ *
+ * @param[in] cluster
+ * @param[in] name IP address to bind, or empty string for no binding.
+ * Only numeric addresses are supported; no resolution is done.
+ * @return CASS_OK if successful, otherwise an error occurred.
+ */
+CASS_EXPORT CassError
+cass_cluster_set_local_address(CassCluster* cluster,
+                               const char* name);
+
+/**
+ * Same as cass_cluster_set_local_address(), but with lengths for string
+ * parameters.
+ *
+ * @public @memberof CassCluster
+ *
+ * @param[in] cluster
+ * @param[in] name
+ * @param[in] name_length
+ * @return same as cass_cluster_set_local_address()
+ *
+ * @see cass_cluster_set_local_address()
+ */
+CASS_EXPORT CassError
+cass_cluster_set_local_address_n(CassCluster* cluster,
+                                 const char* name,
+                                 size_t name_length);
 
 /**
  * Sets the SSL context and enables SSL.
