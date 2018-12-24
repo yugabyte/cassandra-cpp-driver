@@ -79,8 +79,9 @@ static int32_t bytes_to_key(const char* bytes, size_t size) {
     return result;
 }
 
-static bool get_hash_key_from_execute(
-    const ExecuteRequest* execute, int32_t* hash_key, std::string* full_table_name) {
+static bool get_hash_key_from_execute(const ExecuteRequest* execute,
+                                      int32_t* hash_key,
+                                      std::string* full_table_name) {
   const Prepared::ConstPtr& prepared = execute->prepared();
 
   const ResultResponse::ConstPtr& result = prepared->result();
@@ -93,16 +94,12 @@ static bool get_hash_key_from_execute(
 
   // Get binded values and write it into binary stream.
   const AbstractData::ElementVec& elems = execute->elements();
-  BufferVec buffers;
-
-  for (size_t i = 0; i < elems.size(); ++i) {
-    const Buffer b = elems[i].get_buffer(CASS_HIGHEST_SUPPORTED_PROTOCOL_VERSION);
-  }
 
   // Get primary keys indexes.
   const ResultResponse::PKIndexVec& ki = prepared->key_indices();
 
   const size_t header_size = sizeof(int32_t);
+  BufferVec buffers;
   size_t total_size = 0;
   for (size_t i : ki) {
     const Buffer b = elems[i].get_buffer(CASS_HIGHEST_SUPPORTED_PROTOCOL_VERSION);
@@ -127,8 +124,9 @@ static bool get_hash_key_from_execute(
   return true;
 }
 
-bool PartitionAwarePolicy::get_hash_code(
-    const Request* request, int32_t* hash_key, std::string* full_table_name) {
+bool PartitionAwarePolicy::get_hash_code(const Request* request,
+                                         int32_t* hash_key,
+                                         std::string* full_table_name) {
   assert(request != NULL);
   assert(hash_key != NULL);
   assert(full_table_name != NULL);
@@ -156,8 +154,9 @@ bool PartitionAwarePolicy::get_hash_code(
   return false;
 }
 
-bool PartitionAwarePolicy::get_yb_hash_code(
-      const Request* request, int64_t* hash_key, std::string* full_table_name) {
+bool PartitionAwarePolicy::get_yb_hash_code(const Request* request,
+                                            int64_t* hash_key,
+                                            std::string* full_table_name) {
   int32_t hash_key_32b = 0;
   if (! get_hash_code(request, &hash_key_32b, full_table_name)) {
     return false;
@@ -236,8 +235,7 @@ QueryPlan* PartitionAwarePolicy::new_query_plan(const std::string& keyspace,
     return child_plan;
   }
 
-  Host::Ptr leader;
-  CopyOnWriteHostVec followers(new HostVec);
+  CopyOnWriteHostVec replicas(new HostVec);
 
   for (PartitionMetadata::IpList::const_iterator ip_it = ip_list->begin();
       ip_it != ip_list->end(); ++ip_it) {
@@ -247,16 +245,17 @@ QueryPlan* PartitionAwarePolicy::new_query_plan(const std::string& keyspace,
     for (const Host::Ptr& host : *hosts_) {
       if (host->address().to_string(false) == *ip_it) {
         if (is_leader) {
-          leader = host;
+          replicas->insert(replicas->begin(), host);
         } else {
-          followers->push_back(host);
+          replicas->push_back(host);
         }
         break;
       }
     }
   }
 
-  return new PartitionAwareQueryPlan(leader, followers, index_++, child_plan);
+  // Replicas list can be empty.
+  return new PartitionAwareQueryPlan(child_policy_.get(), child_plan, replicas, index_++);
 }
 
 void PartitionAwarePolicy::on_add(const Host::Ptr& host) {
@@ -280,25 +279,34 @@ void PartitionAwarePolicy::on_down(const Host::Ptr& host) {
 }
 
 Host::Ptr PartitionAwarePolicy::PartitionAwareQueryPlan::compute_next() {
-  // Leader is preferred host.
-  if (use_leader_ && leader_host_->is_up()) {
-    use_leader_ = false;
-    return leader_host_;
-  }
+  Host::Ptr host;
+  // Leader is preferred host - first member of replicas list.
+  if (use_leader_ && !replicas_->empty()) {
+    host = (*replicas_)[0];
+    assert(host);
 
-  // Try followers.
-  while (remaining_ > 0) {
-    --remaining_;
-    const Host::Ptr& host((*followers_)[index_++ % followers_->size()]);
     if (host->is_up()) {
+      use_leader_ = false;
       return host;
     }
   }
 
+  // Try followers (indexes from 1 till size()-1).
+  if (replicas_->size() > 1) {
+    while (remaining_ > 0) {
+      --remaining_;
+      host = ((*replicas_)[1 + (index_++ % (replicas_->size() - 1))]);
+
+      if (host->is_up() && child_policy_->distance(host) == CASS_HOST_DISTANCE_LOCAL) {
+        return host;
+      }
+    }
+  }
+
   // In worse case try to use child query plan.
-  Host::Ptr host;
   while ((host = child_plan_->compute_next())) {
-    if (!contains(followers_, host->address()) && !(leader_host_->address() == host->address())) {
+    if (!contains(replicas_, host->address()) ||
+        child_policy_->distance(host) != CASS_HOST_DISTANCE_LOCAL) {
       return host;
     }
   }

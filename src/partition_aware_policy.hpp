@@ -54,24 +54,24 @@ private:
   class PartitionAwareQueryPlan : public QueryPlan {
   public:
     PartitionAwareQueryPlan(
-        const Host::Ptr& leader, const CopyOnWriteHostVec& followers,
-        size_t start_index, QueryPlan* child_plan)
-      : use_leader_(true)
-      , leader_host_(leader)
-      , followers_(followers)
+        LoadBalancingPolicy* child_policy, QueryPlan* child_plan,
+        const CopyOnWriteHostVec& replicas, size_t start_index)
+      : child_policy_(child_policy)
+      , child_plan_(child_plan)
+      , use_leader_(true)
+      , replicas_(replicas)
       , index_(start_index)
-      , remaining_(followers->size())
-      , child_plan_(child_plan) {}
+      , remaining_(replicas->size() - 1) {}
 
     virtual Host::Ptr compute_next();
 
   private:
+    LoadBalancingPolicy* child_policy_;
+    ScopedPtr<QueryPlan> child_plan_;
     bool use_leader_;
-    Host::Ptr leader_host_;
-    const CopyOnWriteHostVec followers_;
+    const CopyOnWriteHostVec replicas_;
     size_t index_;
     size_t remaining_;
-    ScopedPtr<QueryPlan> child_plan_;
   };
 
   static void on_work(PeriodicTask* task);

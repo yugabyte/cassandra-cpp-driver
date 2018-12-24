@@ -70,7 +70,7 @@ public:
       , speculative_execution_policy_(new NoSpeculativeExecutionPolicy())
       , partition_aware_routing_(true) // Enabled by default
       , partition_refresh_frequency_secs_(CASS_DEFAULT_METADATA_REFRESH_FREQUENCY_SECS)
-      , token_aware_routing_(true) // Enabled by default
+      , token_aware_routing_(false)
       , latency_aware_routing_(false)
       , host_targeting_(false)
       , tcp_nodelay_enable_(true)
