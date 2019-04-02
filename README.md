@@ -6,9 +6,6 @@ using exclusively Cassandra's binary protocol and Cassandra Query Language v3.
 
 ## Getting the Driver
 
-Binary versions of the driver, available for multiple operating systems and
-multiple architectures, can be obtained from our [download server]. The
-source code is made available via [GitHub].
 
 Packages for the driver's dependencies, libuv (1.x)
 and OpenSSL, are also provided under the `dependencies` directory for each
