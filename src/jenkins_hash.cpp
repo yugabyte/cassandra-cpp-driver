@@ -134,55 +134,76 @@ uint64_t Hash64StringWithSeed(const char *s, uint32_t len, uint64_t c) {
   switch (keylen) { // Deal with rest. Cases fall through.
     case 23:
       c += char2unsigned64(s[22]) << 56;
+      /* FALLTHRU */
     case 22:
       c += char2unsigned64(s[21]) << 48;
+      /* FALLTHRU */
     case 21:
       c += char2unsigned64(s[20]) << 40;
+      /* FALLTHRU */
     case 20:
       c += char2unsigned64(s[19]) << 32;
+      /* FALLTHRU */
     case 19:
       c += char2unsigned64(s[18]) << 24;
+      /* FALLTHRU */
     case 18:
       c += char2unsigned64(s[17]) << 16;
+      /* FALLTHRU */
     case 17:
       c += char2unsigned64(s[16]) << 8;
       // The first byte of c is reserved for the length.
+      /* FALLTHRU */
     case 16:
       b += Word64At(s + 8);
       a += Word64At(s);
       break;
     case 15:
       b += char2unsigned64(s[14]) << 48;
+      /* FALLTHRU */
     case 14:
       b += char2unsigned64(s[13]) << 40;
+      /* FALLTHRU */
     case 13:
       b += char2unsigned64(s[12]) << 32;
+      /* FALLTHRU */
     case 12:
       b += char2unsigned64(s[11]) << 24;
+      /* FALLTHRU */
     case 11:
       b += char2unsigned64(s[10]) << 16;
+      /* FALLTHRU */
     case 10:
       b += char2unsigned64(s[9]) << 8;
+      /* FALLTHRU */
     case 9:
       b += char2unsigned64(s[8]);
+      /* FALLTHRU */
     case 8:
       a += Word64At(s);
       break;
     case 7:
       a += char2unsigned64(s[6]) << 48;
+      /* FALLTHRU */
     case 6:
       a += char2unsigned64(s[5]) << 40;
+      /* FALLTHRU */
     case 5:
       a += char2unsigned64(s[4]) << 32;
+      /* FALLTHRU */
     case 4:
       a += char2unsigned64(s[3]) << 24;
+      /* FALLTHRU */
     case 3:
       a += char2unsigned64(s[2]) << 16;
+      /* FALLTHRU */
     case 2:
       a += char2unsigned64(s[1]) << 8;
+      /* FALLTHRU */
     case 1:
       a += char2unsigned64(s[0]);
-      // case 0: Nothing left to add.
+      /* FALLTHRU */
+    // case 0: Nothing left to add.
   }
   mix(a, b, c);
   return c;
