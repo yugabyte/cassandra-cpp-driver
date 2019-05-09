@@ -2407,7 +2407,7 @@ void Metadata::InternalData::update_indexes(int protocol_version, const VersionN
   std::string index_name;
 
   KeyspaceMetadata* keyspace = NULL;
-  TableMetadata::Ptr table;
+  TableMetadata::Ptr table(NULL);
 
   while (rows.next()) {
     std::string temp_keyspace_name;
@@ -2434,7 +2434,9 @@ void Metadata::InternalData::update_indexes(int protocol_version, const VersionN
       table->clear_indexes();
     }
 
-    table->add_index(IndexMetadata::from_row(index_name, buffer, row));
+    if (table) {
+        table->add_index(IndexMetadata::from_row(index_name, buffer, row));
+    }
   }
 }
 
