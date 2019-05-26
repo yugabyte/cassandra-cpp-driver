@@ -1,6 +1,6 @@
 # YugaByte C++ Driver for YugaByte DB's Cassandra-compatible YCQL API
 
-A modern, feature-rich] and highly tunable C/C++ client library for YugaByte DB's Cassandra-compatible YCQL API
+A modern, feature-rich and highly tunable C/C++ client library for YugaByte DB's Cassandra-compatible YCQL API
 using exclusively Cassandra's binary protocol and Cassandra Query Language v3.
 
 
