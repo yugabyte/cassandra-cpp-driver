@@ -10188,6 +10188,10 @@ CASS_EXPORT cass_int64_t
 cass_date_time_to_epoch(cass_uint32_t date,
                         cass_int64_t time);
 
+CASS_EXPORT cass_bool_t 
+cass_partition_aware_policy_get_yb_hash_code(CassStatement* statement,
+                                             cass_int64_t* token);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
