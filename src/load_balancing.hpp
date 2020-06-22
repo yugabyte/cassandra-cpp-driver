@@ -25,6 +25,7 @@
 #include <list>
 #include <set>
 #include <string>
+#include <atomic>
 
 #include <uv.h>
 
@@ -82,7 +83,7 @@ public:
   typedef SharedRefPtr<LoadBalancingPolicy> Ptr;
 
   LoadBalancingPolicy()
-    : RefCounted<LoadBalancingPolicy>(), session_(NULL) {}
+    : RefCounted<LoadBalancingPolicy>() {}
 
   virtual ~LoadBalancingPolicy() {}
 
@@ -112,7 +113,8 @@ protected:
   const Metadata* metadata() const;
   const TokenMap* token_map() const;
 
-  Session* session_;
+private:
+  std::atomic<Session*> session_{nullptr};
 };
 
 

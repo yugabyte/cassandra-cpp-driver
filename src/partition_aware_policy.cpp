@@ -202,7 +202,8 @@ QueryPlan* PartitionAwarePolicy::new_query_plan(const std::string& keyspace,
                                                 RequestHandler* request_handler) {
   QueryPlan* const child_plan = child_policy_->new_query_plan(keyspace, request_handler);
 
-  if (request_handler == NULL || request_handler->request() == NULL || metadata() == NULL) {
+  auto* metadata = this->metadata();
+  if (request_handler == NULL || request_handler->request() == NULL || metadata == NULL) {
     LOG_TRACE("Request or metadata is not available - child policy will be used");
     return child_plan;
   }
@@ -215,7 +216,7 @@ QueryPlan* PartitionAwarePolicy::new_query_plan(const std::string& keyspace,
     return child_plan;
   }
 
-  const Metadata::SchemaSnapshot schema = metadata()->schema_snapshot(
+  const Metadata::SchemaSnapshot schema = metadata->schema_snapshot(
       CASS_HIGHEST_SUPPORTED_PROTOCOL_VERSION, VersionNumber(3, 0, 0));
   const TableSplitMetadata::MapPtr& partitions = schema.get_partitions();
 

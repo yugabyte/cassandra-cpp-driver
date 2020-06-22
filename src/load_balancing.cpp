@@ -18,16 +18,18 @@
 namespace cass {
 
 ControlConnection* LoadBalancingPolicy::control_connection() {
-  return session_ == NULL ? NULL : session_->control_connection();
+  auto* session = session_.load(std::memory_order_acquire);
+  return session ? session->control_connection() : nullptr;
 }
 
 const Metadata* LoadBalancingPolicy::metadata() const {
-  const Session* s = session_; // const cast
-  return s == NULL ? NULL : &s->metadata();
+  const auto* session = session_.load(std::memory_order_acquire);
+  return session ? &session->metadata() : nullptr;
 }
 
 const TokenMap* LoadBalancingPolicy::token_map() const {
-  return session_ == NULL ? NULL : session_->token_map();
+  auto* session = session_.load(std::memory_order_acquire);
+  return session ? session->token_map() : nullptr;
 }
 
 } // namespace cass
