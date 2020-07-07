@@ -938,9 +938,12 @@ void Connection::PendingSchemaAgreement::stop_timer() {
 
 Connection::PendingWriteBase::~PendingWriteBase() {
   cleanup_pending_callbacks(&callbacks_);
+  uv_mutex_destroy(&mutex_);
 }
 
 int32_t Connection::PendingWriteBase::write(RequestCallback* callback) {
+  ScopedMutex l(&mutex_);
+
   size_t last_buffer_size = buffers_.size();
   int32_t request_size = callback->encode(connection_->protocol_version_, 0x00, &buffers_);
   if (request_size < 0) {
@@ -956,71 +959,75 @@ int32_t Connection::PendingWriteBase::write(RequestCallback* callback) {
 
 void Connection::PendingWriteBase::on_write(uv_write_t* req, int status) {
   PendingWrite* pending_write = static_cast<PendingWrite*>(req->data);
+  {
+    ScopedMutex l(&pending_write->mutex_);
 
-  Connection* connection = static_cast<Connection*>(pending_write->connection_);
+    Connection* connection = static_cast<Connection*>(pending_write->connection_);
 
-  while (!pending_write->callbacks_.is_empty()) {
-    RequestCallback::Ptr callback(pending_write->callbacks_.front());
+    while (!pending_write->callbacks_.is_empty()) {
+      RequestCallback::Ptr callback(pending_write->callbacks_.front());
 
-    pending_write->callbacks_.remove(callback.get());
+      pending_write->callbacks_.remove(callback.get());
 
-    switch (callback->state()) {
-      case RequestCallback::REQUEST_STATE_WRITING:
-        if (status == 0) {
-          callback->set_state(RequestCallback::REQUEST_STATE_READING);
-          connection->pending_reads_.add_to_back(callback.get());
-        } else {
-          if (!connection->is_closing()) {
-            connection->notify_error("Write error '" +
-                                     std::string(UV_ERRSTR(status, connection->loop_)) +
-                                     "'");
-            connection->defunct();
+      switch (callback->state()) {
+        case RequestCallback::REQUEST_STATE_WRITING:
+          if (status == 0) {
+            callback->set_state(RequestCallback::REQUEST_STATE_READING);
+            connection->pending_reads_.add_to_back(callback.get());
+          } else {
+            if (!connection->is_closing()) {
+              connection->notify_error("Write error '" +
+                                       std::string(UV_ERRSTR(status, connection->loop_)) +
+                                       "'");
+              connection->defunct();
+            }
+
+            connection->stream_manager_.release(callback->stream());
+            callback->set_state(RequestCallback::REQUEST_STATE_FINISHED);
+            callback->on_error(CASS_ERROR_LIB_WRITE_ERROR,
+                               "Unable to write to socket");
+            callback->dec_ref();
           }
+          break;
 
-          connection->stream_manager_.release(callback->stream());
+        case RequestCallback::REQUEST_STATE_READ_BEFORE_WRITE:
+          // The read callback happened before the write callback
+          // returned. This is now responsible for finishing the request.
           callback->set_state(RequestCallback::REQUEST_STATE_FINISHED);
-          callback->on_error(CASS_ERROR_LIB_WRITE_ERROR,
-                             "Unable to write to socket");
+          // Use the response saved in the read callback
+          connection->maybe_set_keyspace(callback->read_before_write_response());
+          callback->on_set(callback->read_before_write_response());
           callback->dec_ref();
-        }
-        break;
+          break;
 
-      case RequestCallback::REQUEST_STATE_READ_BEFORE_WRITE:
-        // The read callback happened before the write callback
-        // returned. This is now responsible for finishing the request.
-        callback->set_state(RequestCallback::REQUEST_STATE_FINISHED);
-        // Use the response saved in the read callback
-        connection->maybe_set_keyspace(callback->read_before_write_response());
-        callback->on_set(callback->read_before_write_response());
-        callback->dec_ref();
-        break;
+        case RequestCallback::REQUEST_STATE_CANCELLED_WRITING:
+          callback->set_state(RequestCallback::REQUEST_STATE_CANCELLED_READING);
+          connection->pending_reads_.add_to_back(callback.get());
+          break;
 
-      case RequestCallback::REQUEST_STATE_CANCELLED_WRITING:
-        callback->set_state(RequestCallback::REQUEST_STATE_CANCELLED_READING);
-        connection->pending_reads_.add_to_back(callback.get());
-        break;
+        case RequestCallback::REQUEST_STATE_CANCELLED_READ_BEFORE_WRITE:
+          // The read callback happened before the write callback
+          // returned. This is now responsible for cleanup.
+          callback->set_state(RequestCallback::REQUEST_STATE_CANCELLED);
+          callback->on_cancel();
+          callback->dec_ref();
+          break;
 
-      case RequestCallback::REQUEST_STATE_CANCELLED_READ_BEFORE_WRITE:
-        // The read callback happened before the write callback
-        // returned. This is now responsible for cleanup.
-        callback->set_state(RequestCallback::REQUEST_STATE_CANCELLED);
-        callback->on_cancel();
-        callback->dec_ref();
-        break;
-
-      default:
-        assert(false && "Invalid request state after write finished");
-        break;
+        default:
+          assert(false && "Invalid request state after write finished");
+          break;
+      }
     }
+
+    connection->pending_writes_.remove(pending_write);
+    connection->flush();
   }
-
-  connection->pending_writes_.remove(pending_write);
   delete pending_write;
-
-  connection->flush();
 }
 
 void Connection::PendingWrite::flush() {
+  ScopedMutex l(&mutex_);
+
   if (!is_flushed_ && !buffers_.empty()) {
     UvBufVec bufs;
 
@@ -1038,6 +1045,8 @@ void Connection::PendingWrite::flush() {
 }
 
 void Connection::PendingWriteSsl::encrypt() {
+  ScopedMutex l(&mutex_);
+
   char buf[SSL_WRITE_SIZE];
 
   size_t copied = 0;
@@ -1091,6 +1100,8 @@ void Connection::PendingWriteSsl::encrypt() {
 }
 
 void Connection::PendingWriteSsl::flush() {
+  ScopedMutex l(&mutex_);
+
   if (!is_flushed_ && !buffers_.empty()) {
     SslSession* ssl_session = connection_->ssl_session_.get();
 
@@ -1113,6 +1124,7 @@ void Connection::PendingWriteSsl::flush() {
 void Connection::PendingWriteSsl::on_write(uv_write_t* req, int status) {
   if (status == 0) {
     PendingWriteSsl* pending_write = static_cast<PendingWriteSsl*>(req->data);
+    ScopedMutex l(&pending_write->mutex_);
     pending_write->connection_->ssl_session_->outgoing().read(NULL, pending_write->encrypted_size_);
   }
   PendingWriteBase::on_write(req, status);
