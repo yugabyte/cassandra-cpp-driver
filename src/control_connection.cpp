@@ -128,6 +128,7 @@ ControlConnection::ControlConnection()
   , connection_(NULL)
   , protocol_version_(0)
   , use_schema_(false)
+  , partition_aware_routing_(false)
   , token_aware_routing_(false) { }
 
 const Host::Ptr& ControlConnection::connected_host() const {
@@ -143,6 +144,7 @@ void ControlConnection::clear() {
   protocol_version_ = 0;
   last_connection_error_.clear();
   use_schema_ = false;
+  partition_aware_routing_ = false;
   token_aware_routing_ = false;
 }
 
@@ -152,6 +154,7 @@ void ControlConnection::connect(Session* session) {
                                                 session_->random_.get()));
   protocol_version_ = session_->config().protocol_version();
   use_schema_ = session_->config().use_schema();
+  partition_aware_routing_ = session_->config().partition_aware_routing();
   token_aware_routing_ = session_->config().token_aware_routing();
   if (protocol_version_ < 0) {
     protocol_version_ = CASS_HIGHEST_SUPPORTED_PROTOCOL_VERSION;
@@ -560,7 +563,9 @@ void ControlConnection::query_meta_schema() {
     }
   }
 
-  callback->execute_query("partitions", YB_SELECT_PARTITIONS);
+  if (partition_aware_routing_) {
+    callback->execute_query("partitions", YB_SELECT_PARTITIONS);
+  }
 }
 
 void ControlConnection::on_query_meta_schema(ControlConnection* control_connection,

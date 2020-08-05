@@ -257,6 +257,7 @@ private:
   VersionNumber cassandra_version_;
   std::string last_connection_error_;
   bool use_schema_;
+  bool partition_aware_routing_;
   bool token_aware_routing_;
 
 private:
