@@ -198,7 +198,6 @@ private:
       : connection_(connection)
       , is_flushed_(false)
       , size_(0) {
-      uv_mutex_init(&mutex_);
       req_.data = this;
     }
 
@@ -225,8 +224,6 @@ private:
     size_t size_;
     BufferVec buffers_;
     List<RequestCallback> callbacks_;
-
-    mutable uv_mutex_t mutex_;
   };
 
   class PendingWrite : public PendingWriteBase {
