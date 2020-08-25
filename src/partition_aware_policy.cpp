@@ -179,25 +179,6 @@ void PartitionAwarePolicy::init(const Host::Ptr& connected_host,
   ChainedLoadBalancingPolicy::init(connected_host, hosts, random);
 }
 
-void PartitionAwarePolicy::register_handles(uv_loop_t* loop) {
-  ChainedLoadBalancingPolicy::register_handles(loop);
-
-  refresh_metadata_task_ = PeriodicTask::start(loop,
-                                               refresh_frequency_secs_*1000,
-                                               this,
-                                               PartitionAwarePolicy::on_work,
-                                               PartitionAwarePolicy::on_after_work);
-}
-
-void PartitionAwarePolicy::close_handles() {
-  if (refresh_metadata_task_) {
-    PeriodicTask::stop(refresh_metadata_task_);
-    refresh_metadata_task_.reset();
-  }
-
-  ChainedLoadBalancingPolicy::close_handles();
-}
-
 QueryPlan* PartitionAwarePolicy::new_query_plan(const std::string& keyspace,
                                                 RequestHandler* request_handler) {
   QueryPlan* const child_plan = child_policy_->new_query_plan(keyspace, request_handler);
@@ -313,17 +294,6 @@ Host::Ptr PartitionAwarePolicy::PartitionAwareQueryPlan::compute_next() {
   }
 
   return Host::Ptr();
-}
-
-void PartitionAwarePolicy::on_work(PeriodicTask* task) {
-  PartitionAwarePolicy* const policy = static_cast<PartitionAwarePolicy*>(task->data());
-  if (policy->control_connection() != NULL) {
-    policy->control_connection()->refresh_partitions();
-  }
-}
-
-void PartitionAwarePolicy::on_after_work(PeriodicTask*) {
-  // No-op.
 }
 
 } // namespace cass

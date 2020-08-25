@@ -216,6 +216,11 @@ private:
                                           const std::string& result_metadata_id,
                                           const ResultResponse::ConstPtr& result_response);
 
+  static void on_refresh_metadata(PeriodicTask* task);
+  static void on_after_refresh_metadata(PeriodicTask* task);
+
+  static void refresh_metadata_callback(CassFuture* future, void* data);
+
 private:
   typedef std::vector<IOWorker::Ptr > IOWorkerVec;
 
@@ -228,6 +233,10 @@ private:
   std::string connect_error_message_;
   Future::Ptr connect_future_;
   Future::Ptr close_future_;
+
+  PeriodicTask::Ptr refresh_metadata_task_;
+  uv_mutex_t refresh_metadata_future_mutex_;
+  ResponseFuture::Ptr refresh_metadata_future_;
 
   HostMap hosts_;
   uv_mutex_t hosts_mutex_;

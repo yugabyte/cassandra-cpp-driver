@@ -509,7 +509,8 @@ void ControlConnection::on_query_hosts(ControlConnection* control_connection,
   session->purge_hosts(is_initial_connection);
 
   if (control_connection->use_schema_ ||
-      control_connection->token_aware_routing_) {
+      control_connection->token_aware_routing_ ||
+      control_connection->partition_aware_routing_) {
     control_connection->query_meta_schema();
   } else if (is_initial_connection) {
     control_connection->state_ = CONTROL_STATE_READY;
@@ -520,11 +521,8 @@ void ControlConnection::on_query_hosts(ControlConnection* control_connection,
   }
 }
 
-void ControlConnection::refresh_partitions() {
-  SharedRefPtr<ControlMultipleRequestCallback<UnusedData> > callback(
-        new ControlMultipleRequestCallback<UnusedData>(this, ControlConnection::on_query_meta_schema, UnusedData()));
-
-  callback->execute_query("partitions", YB_SELECT_PARTITIONS);
+std::string ControlConnection::get_yb_select_partitions_statement() {
+  return std::string(YB_SELECT_PARTITIONS);
 }
 
 //TODO: query and callbacks should be in Metadata

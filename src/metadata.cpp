@@ -890,14 +890,9 @@ void Metadata::update_aggregates(int protocol_version, const VersionNumber& cass
 }
 
 void Metadata::update_partitions(int protocol_version, const VersionNumber& cassandra_version, ResultResponse* result) {
+  ScopedMutex l(&mutex_);
   schema_snapshot_version_++;
-
-  if (is_front_buffer()) {
-    ScopedMutex l(&mutex_);
-    updating_->update_partitions(protocol_version, cassandra_version, cache_, result);
-  } else {
-    updating_->update_partitions(protocol_version, cassandra_version, cache_, result);
-  }
+  updating_->update_partitions(protocol_version, cassandra_version, cache_, result);
 }
 
 void Metadata::drop_keyspace(const std::string& keyspace_name) {

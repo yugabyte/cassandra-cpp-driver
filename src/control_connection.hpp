@@ -46,6 +46,8 @@ public:
                                               const Value* rpc_value,
                                               Address* output);
 
+  static std::string get_yb_select_partitions_statement();
+
   enum State {
     CONTROL_STATE_NEW,
     CONTROL_STATE_READY,
@@ -72,8 +74,6 @@ public:
 
   void on_up(const Address& address);
   void on_down(const Address& address);
-
-  void refresh_partitions();
 
 private:
   template<class T>

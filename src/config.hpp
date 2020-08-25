@@ -298,6 +298,10 @@ public:
 
   bool partition_aware_routing() const { return partition_aware_routing_; }
 
+  unsigned partition_refresh_frequency_secs() const {
+    return partition_refresh_frequency_secs_;
+  }
+
   void set_partition_aware_routing(bool is_partition_aware,
                                    unsigned refresh_frequency_secs = CASS_DEFAULT_METADATA_REFRESH_FREQUENCY_SECS) {
     partition_aware_routing_ = is_partition_aware;

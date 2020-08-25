@@ -20,9 +20,11 @@
 #include "cluster.hpp"
 #include "config.hpp"
 #include "constants.hpp"
+#include "error_response.hpp"
 #include "execute_request.hpp"
 #include "logger.hpp"
 #include "prepare_request.hpp"
+#include "query_request.hpp"
 #include "scoped_lock.hpp"
 #include "statement.hpp"
 #include "timer.hpp"
@@ -158,6 +160,7 @@ Session::Session()
   uv_mutex_init(&state_mutex_);
   uv_mutex_init(&hosts_mutex_);
   uv_mutex_init(&keyspace_mutex_);
+  uv_mutex_init(&refresh_metadata_future_mutex_);
 }
 
 Session::~Session() {
@@ -165,6 +168,7 @@ Session::~Session() {
   uv_mutex_destroy(&state_mutex_);
   uv_mutex_destroy(&hosts_mutex_);
   uv_mutex_destroy(&keyspace_mutex_);
+  uv_mutex_destroy(&refresh_metadata_future_mutex_);
 }
 
 void Session::clear(const Config& config) {
@@ -173,6 +177,10 @@ void Session::clear(const Config& config) {
   metrics_.reset(new Metrics(config_.thread_count_io() + 1));
   connect_future_.reset();
   close_future_.reset();
+  {
+    ScopedMutex lock_future(&refresh_metadata_future_mutex_);
+    refresh_metadata_future_.reset();
+  }
   { // Lock hosts
     ScopedMutex l(&hosts_mutex_);
     hosts_.clear();
@@ -416,6 +424,76 @@ void Session::notify_connected() {
     connect_future_->set();
     connect_future_.reset();
   }
+  {
+    ScopedMutex lock_future(&refresh_metadata_future_mutex_);
+    if (refresh_metadata_future_) {
+      refresh_metadata_future_->set();
+      refresh_metadata_future_.reset();
+    }
+  }
+
+  if (config().partition_aware_routing()) {
+    refresh_metadata_task_ = PeriodicTask::start(loop(),
+                                                 config().partition_refresh_frequency_secs()*1000,
+                                                 this,
+                                                 Session::on_refresh_metadata,
+                                                 Session::on_after_refresh_metadata);
+  }
+}
+
+void Session::on_refresh_metadata(PeriodicTask* task) {
+  Session* const session = static_cast<Session*>(task->data());
+  {
+    ScopedMutex l(&session->state_mutex_);
+    if (session->state_.load(MEMORY_ORDER_RELAXED) != SESSION_STATE_CONNECTED) {
+      return; // The session is finished.
+    }
+  }
+
+  ScopedMutex lock_future(&session->refresh_metadata_future_mutex_);
+  if (!session->refresh_metadata_future_) {
+    session->refresh_metadata_future_.reset(new ResponseFuture());
+    session->refresh_metadata_future_->set_callback(&Session::refresh_metadata_callback, session);
+
+    cass::QueryRequest* const query_request =
+        new cass::QueryRequest(ControlConnection::get_yb_select_partitions_statement(), 0);
+    RequestHandler::Ptr request_handler(new RequestHandler(
+        QueryRequest::ConstPtr(query_request), session->refresh_metadata_future_, session));
+    session->execute(request_handler);
+  }
+}
+
+void Session::on_after_refresh_metadata(PeriodicTask* task) {
+  // No-op.
+}
+
+void Session::refresh_metadata_callback(CassFuture* future, void* data) {
+  ResponseFuture::Ptr rf(static_cast<cass::ResponseFuture*>(future->from()));
+  Session* const session = static_cast<Session*>(data);
+
+  ScopedMutex lock_future(&session->refresh_metadata_future_mutex_);
+  session->refresh_metadata_future_.reset();
+
+  {
+    ScopedMutex l(&session->state_mutex_);
+    if (session->state_.load(MEMORY_ORDER_RELAXED) != SESSION_STATE_CONNECTED) {
+      return; // The session is finished.
+    }
+  }
+
+  if (!rf->ready()) {
+    return; // ResponseFuture is not ready.
+  }
+
+  cass::Response::Ptr response(rf->response());
+  if (!response || check_error_or_invalid_response("Session", CQL_OPCODE_RESULT, response.get())) {
+    return; // Error or null response.
+  }
+
+  const int protocol_version = session->control_connection_.protocol_version();
+  const VersionNumber& cassandra_version = session->control_connection_.cassandra_version();
+  ResultResponse* const partitions_result = static_cast<ResultResponse*>(response.get());
+  session->metadata().update_partitions(protocol_version, cassandra_version, partitions_result);
 }
 
 void Session::notify_connect_error(CassError code, const std::string& message) {
@@ -445,12 +523,23 @@ void Session::notify_closed() {
     close_future_->set();
     close_future_.reset();
   }
+
+  ScopedMutex lock_future(&refresh_metadata_future_mutex_);
+  if (refresh_metadata_future_) {
+    refresh_metadata_future_->set();
+    refresh_metadata_future_.reset();
+  }
 }
 
 void Session::close_handles() {
   EventThread<SessionEvent>::close_handles();
   request_queue_->close_handles();
   config_.load_balancing_policy()->close_handles();
+
+  if (refresh_metadata_task_) {
+    PeriodicTask::stop(refresh_metadata_task_);
+    refresh_metadata_task_.reset();
+  }
 }
 
 void Session::on_run() {

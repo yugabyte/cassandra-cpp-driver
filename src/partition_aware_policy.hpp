@@ -29,9 +29,6 @@ public:
 
   virtual void init(const Host::Ptr& connected_host, const HostMap& hosts, Random* random);
 
-  virtual void register_handles(uv_loop_t* loop);
-  virtual void close_handles();
-
   virtual QueryPlan* new_query_plan(const std::string& keyspace,
                                     RequestHandler* request_handler);
 
@@ -74,10 +71,6 @@ private:
     size_t remaining_;
   };
 
-  static void on_work(PeriodicTask* task);
-  static void on_after_work(PeriodicTask*);
-
-  PeriodicTask::Ptr refresh_metadata_task_;
   CopyOnWriteHostVec hosts_;
   int index_;
   unsigned refresh_frequency_secs_;
