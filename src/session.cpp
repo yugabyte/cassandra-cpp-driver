@@ -449,16 +449,20 @@ void Session::on_refresh_metadata(PeriodicTask* task) {
       return; // The session is finished.
     }
   }
-
-  ScopedMutex lock_future(&session->refresh_metadata_future_mutex_);
-  if (!session->refresh_metadata_future_) {
-    session->refresh_metadata_future_.reset(new ResponseFuture());
-    session->refresh_metadata_future_->set_callback(&Session::refresh_metadata_callback, session);
-
-    cass::QueryRequest* const query_request =
+  RequestHandler::Ptr request_handler;
+  {
+    ScopedMutex lock_future(&session->refresh_metadata_future_mutex_);
+    if (!session->refresh_metadata_future_) {
+      session->refresh_metadata_future_.reset(new ResponseFuture());
+      session->refresh_metadata_future_->set_callback(&Session::refresh_metadata_callback, session);
+      cass::QueryRequest* const query_request =
         new cass::QueryRequest(ControlConnection::get_yb_select_partitions_statement(), 0);
-    RequestHandler::Ptr request_handler(new RequestHandler(
+      request_handler = RequestHandler::Ptr(new RequestHandler(
         QueryRequest::ConstPtr(query_request), session->refresh_metadata_future_, session));
+    }
+  }
+  if (request_handler) {
+    // the Session::Execute() call chain can take lock on refresh_metadata_future_mutex_.
     session->execute(request_handler);
   }
 }
