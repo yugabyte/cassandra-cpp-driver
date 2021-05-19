@@ -277,11 +277,13 @@ void RequestExecution::on_result_metadata_changed(const Request* request,
     // Attempt to use the per-query keyspace first (v5+/DSEv2+ only) then
     // the keyspace in the result metadata.
     std::string keyspace;
+    bool keyspace_from_response = false;
     if (supports_set_keyspace(result_response->protocol_version()) &&
         !request->keyspace().empty()) {
       keyspace = request->keyspace();
     } else {
       keyspace = result_response->keyspace().to_string();
+      keyspace_from_response = true;
     }
 
     if (request->opcode() == CQL_OPCODE_EXECUTE &&
@@ -294,6 +296,11 @@ void RequestExecution::on_result_metadata_changed(const Request* request,
                                                               ResultResponse::ConstPtr(result_response));
     } else if (request->opcode()  == CQL_OPCODE_PREPARE &&
                result_response->kind() == CASS_RESULT_KIND_PREPARED) {
+      if (keyspace_from_response && connection() && connection()->keyspace().empty()) {
+        // Clear keyspace if keyspace was not set in connection.
+        // This prevents sending useless 'USE <ks>' to new CQL hosts.
+        keyspace.clear();
+      }
       const PrepareRequest* prepare = static_cast<const PrepareRequest*>(request);
       request_handler_->listener_->on_result_metadata_changed(result_response->prepared_id().to_string(),
                                                               prepare->query(),
