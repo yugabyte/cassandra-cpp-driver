@@ -269,7 +269,6 @@ private:
 private:
   RequestHandler::Ptr request_handler_;
   Host::Ptr current_host_;
-  Connection* connection_;
   Timer schedule_timer_;
   int num_retries_;
   uint64_t start_time_ns_;
