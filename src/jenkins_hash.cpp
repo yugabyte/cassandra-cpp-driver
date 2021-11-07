@@ -59,6 +59,24 @@
 # define JENKINS_LITTLE_ENDIAN
 # define JENKINS_BYTE_ORDER 1234
 #else
+// From https://stackoverflow.com/questions/4239993/determining-endianness-at-compile-time/4240029
+#if defined(__BYTE_ORDER) && __BYTE_ORDER == __BIG_ENDIAN || \
+    defined(__BIG_ENDIAN__) || \
+    defined(__ARMEB__) || \
+    defined(__THUMBEB__) || \
+    defined(__AARCH64EB__) || \
+    defined(_MIBSEB) || defined(__MIBSEB) || defined(__MIBSEB__)
+# define JENKINS_BIG_ENDIAN
+# define JENKINS_BYTE_ORDER 4321
+#elif defined(__BYTE_ORDER) && __BYTE_ORDER == __LITTLE_ENDIAN || \
+    defined(__LITTLE_ENDIAN__) || \
+    defined(__ARMEL__) || \
+    defined(__THUMBEL__) || \
+    defined(__AARCH64EL__) || \
+    defined(_MIPSEL) || defined(__MIPSEL) || defined(__MIPSEL__)
+# define JENKINS_LITTLE_ENDIAN
+# define JENKINS_BYTE_ORDER 1234
+#else
 # error The file cassandra-cpp-driver/src/jenkins_hash.hpp needs to be set up for your CPU type.
 #endif
 
