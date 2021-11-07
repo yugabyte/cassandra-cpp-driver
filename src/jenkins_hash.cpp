@@ -58,9 +58,8 @@
 
 # define JENKINS_LITTLE_ENDIAN
 # define JENKINS_BYTE_ORDER 1234
-#else
 // From https://stackoverflow.com/questions/4239993/determining-endianness-at-compile-time/4240029
-#if defined(__BYTE_ORDER) && __BYTE_ORDER == __BIG_ENDIAN || \
+#elif defined(__BYTE_ORDER) && __BYTE_ORDER == __BIG_ENDIAN || \
     defined(__BIG_ENDIAN__) || \
     defined(__ARMEB__) || \
     defined(__THUMBEB__) || \
