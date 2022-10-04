@@ -1,0 +1,392 @@
+[
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/abstract_data.cpp\\\" -o CMakeFiles/cassandra.dir/src/abstract_data.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/abstract_data.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/abstract_data.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/address.cpp\\\" -o CMakeFiles/cassandra.dir/src/address.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/address.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/address.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/auth.cpp\\\" -o CMakeFiles/cassandra.dir/src/auth.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/auth.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/auth.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/auth_requests.cpp\\\" -o CMakeFiles/cassandra.dir/src/auth_requests.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/auth_requests.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/auth_requests.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/auth_responses.cpp\\\" -o CMakeFiles/cassandra.dir/src/auth_responses.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/auth_responses.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/auth_responses.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/batch_request.cpp\\\" -o CMakeFiles/cassandra.dir/src/batch_request.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/batch_request.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/batch_request.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/blacklist_dc_policy.cpp\\\" -o CMakeFiles/cassandra.dir/src/blacklist_dc_policy.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/blacklist_dc_policy.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/blacklist_dc_policy.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/blacklist_policy.cpp\\\" -o CMakeFiles/cassandra.dir/src/blacklist_policy.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/blacklist_policy.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/blacklist_policy.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/cluster.cpp\\\" -o CMakeFiles/cassandra.dir/src/cluster.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/cluster.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/cluster.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/collection.cpp\\\" -o CMakeFiles/cassandra.dir/src/collection.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/collection.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/collection.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/collection_iterator.cpp\\\" -o CMakeFiles/cassandra.dir/src/collection_iterator.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/collection_iterator.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/collection_iterator.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/connection.cpp\\\" -o CMakeFiles/cassandra.dir/src/connection.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/connection.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/connection.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/control_connection.cpp\\\" -o CMakeFiles/cassandra.dir/src/control_connection.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/control_connection.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/control_connection.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/data_type.cpp\\\" -o CMakeFiles/cassandra.dir/src/data_type.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/data_type.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/data_type.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/data_type_parser.cpp\\\" -o CMakeFiles/cassandra.dir/src/data_type_parser.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/data_type_parser.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/data_type_parser.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/dc_aware_policy.cpp\\\" -o CMakeFiles/cassandra.dir/src/dc_aware_policy.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/dc_aware_policy.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/dc_aware_policy.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/encode.cpp\\\" -o CMakeFiles/cassandra.dir/src/encode.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/encode.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/encode.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/error_response.cpp\\\" -o CMakeFiles/cassandra.dir/src/error_response.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/error_response.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/error_response.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/event_response.cpp\\\" -o CMakeFiles/cassandra.dir/src/event_response.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/event_response.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/event_response.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/execute_request.cpp\\\" -o CMakeFiles/cassandra.dir/src/execute_request.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/execute_request.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/execute_request.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/external.cpp\\\" -o CMakeFiles/cassandra.dir/src/external.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/external.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/external.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/future.cpp\\\" -o CMakeFiles/cassandra.dir/src/future.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/future.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/future.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/get_time-unix.cpp\\\" -o CMakeFiles/cassandra.dir/src/get_time-unix.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/get_time-unix.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/get_time-unix.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/host.cpp\\\" -o CMakeFiles/cassandra.dir/src/host.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/host.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/host.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/host_targeting_policy.cpp\\\" -o CMakeFiles/cassandra.dir/src/host_targeting_policy.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/host_targeting_policy.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/host_targeting_policy.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/io_worker.cpp\\\" -o CMakeFiles/cassandra.dir/src/io_worker.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/io_worker.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/io_worker.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/iterator.cpp\\\" -o CMakeFiles/cassandra.dir/src/iterator.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/iterator.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/iterator.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/jenkins_hash.cpp\\\" -o CMakeFiles/cassandra.dir/src/jenkins_hash.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/jenkins_hash.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/jenkins_hash.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/latency_aware_policy.cpp\\\" -o CMakeFiles/cassandra.dir/src/latency_aware_policy.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/latency_aware_policy.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/latency_aware_policy.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/list_policy.cpp\\\" -o CMakeFiles/cassandra.dir/src/list_policy.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/list_policy.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/list_policy.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/load_balancing.cpp\\\" -o CMakeFiles/cassandra.dir/src/load_balancing.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/load_balancing.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/load_balancing.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/logger.cpp\\\" -o CMakeFiles/cassandra.dir/src/logger.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/logger.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/logger.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/map_iterator.cpp\\\" -o CMakeFiles/cassandra.dir/src/map_iterator.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/map_iterator.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/map_iterator.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/md5.cpp\\\" -o CMakeFiles/cassandra.dir/src/md5.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/md5.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/md5.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/metadata.cpp\\\" -o CMakeFiles/cassandra.dir/src/metadata.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/metadata.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/metadata.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/murmur3.cpp\\\" -o CMakeFiles/cassandra.dir/src/murmur3.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/murmur3.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/murmur3.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/partition_aware_policy.cpp\\\" -o CMakeFiles/cassandra.dir/src/partition_aware_policy.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/partition_aware_policy.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/partition_aware_policy.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/pool.cpp\\\" -o CMakeFiles/cassandra.dir/src/pool.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/pool.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/pool.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/prepare_host_handler.cpp\\\" -o CMakeFiles/cassandra.dir/src/prepare_host_handler.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/prepare_host_handler.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/prepare_host_handler.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/prepare_request.cpp\\\" -o CMakeFiles/cassandra.dir/src/prepare_request.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/prepare_request.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/prepare_request.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/prepared.cpp\\\" -o CMakeFiles/cassandra.dir/src/prepared.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/prepared.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/prepared.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/query_request.cpp\\\" -o CMakeFiles/cassandra.dir/src/query_request.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/query_request.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/query_request.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/random.cpp\\\" -o CMakeFiles/cassandra.dir/src/random.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/random.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/random.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/register_request.cpp\\\" -o CMakeFiles/cassandra.dir/src/register_request.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/register_request.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/register_request.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/request.cpp\\\" -o CMakeFiles/cassandra.dir/src/request.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/request.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/request.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/request_callback.cpp\\\" -o CMakeFiles/cassandra.dir/src/request_callback.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/request_callback.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/request_callback.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/request_handler.cpp\\\" -o CMakeFiles/cassandra.dir/src/request_handler.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/request_handler.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/request_handler.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/response.cpp\\\" -o CMakeFiles/cassandra.dir/src/response.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/response.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/response.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/result_metadata.cpp\\\" -o CMakeFiles/cassandra.dir/src/result_metadata.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/result_metadata.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/result_metadata.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/result_response.cpp\\\" -o CMakeFiles/cassandra.dir/src/result_response.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/result_response.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/result_response.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/retry_policy.cpp\\\" -o CMakeFiles/cassandra.dir/src/retry_policy.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/retry_policy.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/retry_policy.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/ring_buffer.cpp\\\" -o CMakeFiles/cassandra.dir/src/ring_buffer.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/ring_buffer.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/ring_buffer.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/round_robin_policy.cpp\\\" -o CMakeFiles/cassandra.dir/src/round_robin_policy.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/round_robin_policy.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/round_robin_policy.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/row.cpp\\\" -o CMakeFiles/cassandra.dir/src/row.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/row.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/row.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/schema_change_callback.cpp\\\" -o CMakeFiles/cassandra.dir/src/schema_change_callback.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/schema_change_callback.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/schema_change_callback.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/session.cpp\\\" -o CMakeFiles/cassandra.dir/src/session.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/session.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/session.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/ssl.cpp\\\" -o CMakeFiles/cassandra.dir/src/ssl.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/ssl.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/ssl.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/startup_request.cpp\\\" -o CMakeFiles/cassandra.dir/src/startup_request.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/startup_request.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/startup_request.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/statement.cpp\\\" -o CMakeFiles/cassandra.dir/src/statement.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/statement.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/statement.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/string_ref.cpp\\\" -o CMakeFiles/cassandra.dir/src/string_ref.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/string_ref.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/string_ref.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/supported_response.cpp\\\" -o CMakeFiles/cassandra.dir/src/supported_response.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/supported_response.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/supported_response.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/testing.cpp\\\" -o CMakeFiles/cassandra.dir/src/testing.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/testing.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/testing.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/timestamp_generator.cpp\\\" -o CMakeFiles/cassandra.dir/src/timestamp_generator.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/timestamp_generator.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/timestamp_generator.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/token_aware_policy.cpp\\\" -o CMakeFiles/cassandra.dir/src/token_aware_policy.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/token_aware_policy.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/token_aware_policy.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/token_map.cpp\\\" -o CMakeFiles/cassandra.dir/src/token_map.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/token_map.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/token_map.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/token_map_impl.cpp\\\" -o CMakeFiles/cassandra.dir/src/token_map_impl.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/token_map_impl.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/token_map_impl.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/tuple.cpp\\\" -o CMakeFiles/cassandra.dir/src/tuple.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/tuple.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/tuple.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/user_type_field_iterator.cpp\\\" -o CMakeFiles/cassandra.dir/src/user_type_field_iterator.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/user_type_field_iterator.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/user_type_field_iterator.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/user_type_value.cpp\\\" -o CMakeFiles/cassandra.dir/src/user_type_value.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/user_type_value.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/user_type_value.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/utils.cpp\\\" -o CMakeFiles/cassandra.dir/src/utils.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/utils.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/utils.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/uuids.cpp\\\" -o CMakeFiles/cassandra.dir/src/uuids.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/uuids.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/uuids.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/value.cpp\\\" -o CMakeFiles/cassandra.dir/src/value.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/value.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/value.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/whitelist_dc_policy.cpp\\\" -o CMakeFiles/cassandra.dir/src/whitelist_dc_policy.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/whitelist_dc_policy.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/whitelist_dc_policy.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/whitelist_policy.cpp\\\" -o CMakeFiles/cassandra.dir/src/whitelist_policy.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/whitelist_policy.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/whitelist_policy.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/third_party/hdr_histogram/hdr_histogram.cpp\\\" -o CMakeFiles/cassandra.dir/src/third_party/hdr_histogram/hdr_histogram.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/third_party/hdr_histogram/hdr_histogram.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/third_party/hdr_histogram/hdr_histogram.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/third_party/curl/hostcheck.cpp\\\" -o CMakeFiles/cassandra.dir/src/third_party/curl/hostcheck.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/third_party/curl/hostcheck.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/third_party/curl/hostcheck.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/ssl/ssl_openssl_impl.cpp\\\" -o CMakeFiles/cassandra.dir/src/ssl/ssl_openssl_impl.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/ssl/ssl_openssl_impl.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/ssl/ssl_openssl_impl.cpp"
+},
+{
+  "directory": "/home/jayantanand/cassandra-cpp-driver/BUILD",
+  "command": "/usr/bin/c++ -Dcassandra_EXPORTS -I/home/jayantanand/cassandra-cpp-driver/include -I/home/jayantanand/cassandra-cpp-driver/src -I/home/jayantanand/cassandra-cpp-driver/src/ssl -I/home/jayantanand/cassandra-cpp-driver/src/third_party/rapidjson -I/home/jayantanand/cassandra-cpp-driver/src/third_party/sparsehash/src -fPIC   -std=c++11 -Wall -pedantic -Wextra -Wno-long-long -Wno-unused-parameter -Wno-variadic-macros -Wno-unused-local-typedefs -Werror -DCASS_BUILDING -DLOG_FILE_=\\\"src/ssl/ring_buffer_bio.cpp\\\" -o CMakeFiles/cassandra.dir/src/ssl/ring_buffer_bio.cpp.o -c /home/jayantanand/cassandra-cpp-driver/src/ssl/ring_buffer_bio.cpp",
+  "file": "/home/jayantanand/cassandra-cpp-driver/src/ssl/ring_buffer_bio.cpp"
+}
+]
