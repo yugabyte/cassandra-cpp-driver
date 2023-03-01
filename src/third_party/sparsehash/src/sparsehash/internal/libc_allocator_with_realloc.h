@@ -65,7 +65,7 @@ class libc_allocator_with_realloc {
     free(p);
   }
   pointer reallocate(pointer p, size_type n) {
-    return static_cast<pointer>(realloc(p, n * sizeof(value_type)));
+    return static_cast<pointer>(realloc(static_cast<void*>(p), n * sizeof(value_type)));
   }
 
   size_type max_size() const  {
