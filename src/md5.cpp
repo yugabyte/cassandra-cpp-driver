@@ -148,7 +148,7 @@ void Md5::final(uint8_t* result) {
   result[14] = d_ >> 16;
   result[15] = d_ >> 24;
 
-  memset(this, 0, sizeof(Md5));
+  clear();
 }
 
 // This processes one or more 64-byte data blocks, but does NOT update
@@ -256,6 +256,12 @@ const uint8_t* Md5::body(const uint8_t* data, size_t size)
   d_ = d;
 
   return ptr;
+}
+
+void Md5::clear() {
+  lo_ = hi_ = a_ = b_ = c_ = d_ = 0;
+  memset(buffer_, 0, sizeof(buffer_));
+  memset(block_, 0, sizeof(block_));
 }
 
 } // namespace cass

@@ -37,6 +37,8 @@ public:
 private:
   const uint8_t* body(const uint8_t* data, size_t size);
 
+  void clear();
+
 private:
   // Any 32-bit or wider unsigned integer data type will do
   typedef uint32_t MD5_u32plus;
