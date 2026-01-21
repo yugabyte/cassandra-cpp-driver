@@ -831,7 +831,7 @@ private:
   InternalData front_;
   InternalData back_;
 
-  uint32_t schema_snapshot_version_;
+  Atomic<uint32_t> schema_snapshot_version_;
 
   // This lock prevents partial snapshots when updating metadata
   mutable uv_mutex_t mutex_;
